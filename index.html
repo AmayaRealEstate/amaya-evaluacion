@@ -190,10 +190,10 @@ textarea.open-field:focus{outline:none;border-color:var(--accent)}
   <input type="hidden" name="experiencia" id="hf-exp">
   <input type="hidden" name="disponibilidad" id="hf-disp">
   <input type="hidden" name="vehiculo" id="hf-vehiculo">
-  <input type="hidden" name="PERFIL_DISC_D" id="hf-d">
-  <input type="hidden" name="PERFIL_DISC_I" id="hf-i">
-  <input type="hidden" name="PERFIL_DISC_S" id="hf-s">
-  <input type="hidden" name="PERFIL_DISC_C" id="hf-c">
+  <input type="hidden" name="D_Dominancia" id="hf-d">
+  <input type="hidden" name="I_Influencia" id="hf-i">
+  <input type="hidden" name="S_Estabilidad" id="hf-s">
+  <input type="hidden" name="C_Conciencia" id="hf-c">
   <input type="hidden" name="TIPO_DE_PERFIL" id="hf-perfil">
   <input type="hidden" name="APTITUD" id="hf-aptitud">
   <input type="hidden" name="Orientacion_comercial" id="hf-com">
@@ -439,10 +439,17 @@ function submitForm(){
   document.getElementById('hf-exp').value=document.getElementById('f-exp').value;
   document.getElementById('hf-disp').value=document.getElementById('f-disp').value;
   document.getElementById('hf-vehiculo').value=document.getElementById('f-vehiculo').value;
-  document.getElementById('hf-d').value=pct.D+'%';
-  document.getElementById('hf-i').value=pct.I+'%';
-  document.getElementById('hf-s').value=pct.S+'%';
-  document.getElementById('hf-c').value=pct.C+'%';
+  const discDesc={
+    D:{high:'Perfil muy dominante. Directo, decidido y orientado a resultados. Empuja cierres con naturalidad y no teme el conflicto en una negociación.',mid:'Tiene iniciativa y cierta orientación a resultados, aunque no es su rasgo principal. Puede cerrar bien con formación.',low:'Baja dominancia. Le puede costar conducir negociaciones duras o empujar un cierre cuando el cliente demora.'},
+    I:{high:'Perfil muy influyente. Carismático/a, comunicativo/a y entusiasta. Genera confianza rápido y conecta fácilmente con distintos tipos de clientes.',mid:'Buena capacidad de comunicación e influencia. Se relaciona bien aunque no siempre toma la iniciativa social.',low:'Baja influencia. Puede costarle generar rapport con clientes nuevos o sostener conversaciones comerciales fluidas.'},
+    S:{high:'Muy estable y confiable. Paciente, metódico/a y excelente en el seguimiento. Construye relaciones duraderas con los clientes.',mid:'Estabilidad media. Tiene paciencia aunque puede perder el hilo en procesos largos o con muchos clientes a la vez.',low:'Baja estabilidad. Puede ser impulsivo/a o impaciente. Le cuestan los procesos largos y el seguimiento sostenido.'},
+    C:{high:'Muy analítico/a y detallista. Revisa bien la documentación y los números. Ideal para operaciones complejas aunque puede ser lento/a para decidir.',mid:'Cierto nivel de análisis y cuidado en los detalles. Equilibrio entre acción y reflexión.',low:'Baja conciencia. Puede cometer errores en documentación o en los detalles de una operación. Necesita revisión externa.'}
+  };
+  const getDiscLevel=(v)=>v>=40?'high':v>=20?'mid':'low';
+  document.getElementById('hf-d').value=pct.D+'% — '+discDesc.D[getDiscLevel(pct.D)];
+  document.getElementById('hf-i').value=pct.I+'% — '+discDesc.I[getDiscLevel(pct.I)];
+  document.getElementById('hf-s').value=pct.S+'% — '+discDesc.S[getDiscLevel(pct.S)];
+  document.getElementById('hf-c').value=pct.C+'% — '+discDesc.C[getDiscLevel(pct.C)];
   document.getElementById('hf-perfil').value=prof.name;
   document.getElementById('hf-aptitud').value=prof.aptitud;
   document.getElementById('hf-com').value=dimScores.comercial+'% — '+dimDefs.comercial.desc[getDimLevel(dimScores.comercial)];
