@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amaya · Evaluación de perfil</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0d12;
+  --bg2:#111520;
+  --bg3:#181e2a;
+  --border:#ffffff14;
+  --border2:#ffffff22;
+  --accent:#2de0a5;
+  --accent2:#1ab885;
+  --text:#ffffff;
+  --text2:#a0aab8;
+  --text3:#60697a;
+  --danger:#e24b4a;
+  --warn:#f0a500;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter','Helvetica Neue',Arial,sans-serif;min-height:100vh;font-size:16px;line-height:1.6}
+.container{max-width:680px;margin:0 auto;padding:2rem 1.25rem 4rem}
+
+/* HEADER */
+.site-header{padding:1.5rem 0 2.5rem;border-bottom:1px solid var(--border);margin-bottom:2.5rem}
+.logo{font-size:26px;font-weight:800;letter-spacing:-.5px;color:var(--text)}
+.logo span{color:var(--accent)}
+.tagline{font-size:13px;color:var(--text3);margin-top:.25rem}
+.badge{display:inline-block;font-size:11px;padding:3px 10px;border-radius:20px;background:var(--bg3);border:1px solid var(--border2);color:var(--text2);margin-top:.6rem}
+
+/* SCREENS */
+.screen{display:none}.screen.active{display:block}
+
+/* PROGRESS */
+.prog-wrap{margin-bottom:2rem}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.prog-label{font-size:12px;color:var(--text3)}
+.prog-pct{font-size:12px;font-weight:600;color:var(--accent)}
+.prog-bar-bg{height:3px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.prog-bar{height:3px;background:var(--accent);border-radius:2px;transition:width .3s}
+
+/* SECTION TITLES */
+.sec{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
+
+/* SCREEN TITLE */
+.screen-title{font-size:28px;font-weight:800;letter-spacing:-.5px;margin-bottom:.4rem;line-height:1.2}
+.screen-sub{font-size:14px;color:var(--text2);margin-bottom:2rem;line-height:1.6}
+
+/* FORM FIELDS */
+.fields-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
+.field{display:flex;flex-direction:column;gap:.4rem}
+.field label{font-size:12px;color:var(--text2);font-weight:500}
+.field input,.field select{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:.6rem .85rem;font-size:14px;color:var(--text);font-family:inherit;transition:border .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent)}
+.field select option{background:var(--bg2)}
+.field-full{grid-column:1/-1}
+
+/* DISC BLOCKS */
+.disc-block{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:.75rem}
+.disc-block-num{font-size:11px;color:var(--text3);margin-bottom:.75rem}
+.disc-cols-header{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.4rem}
+.disc-col-label{font-size:11px;color:var(--text3);text-align:center;padding:3px 0}
+.disc-col-label.mas{color:var(--accent)}
+.disc-col-label.men{color:#6ea8fe}
+.disc-row{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.4rem}
+.disc-btn{padding:.5rem .6rem;border:1px solid var(--border2);border-radius:8px;font-size:14px;color:var(--text2);cursor:pointer;text-align:center;transition:all .12s;background:var(--bg3)}
+.disc-btn:hover{border-color:var(--border2);color:var(--text);background:#1e2535}
+.disc-btn.sel-mas{background:#0d2e22;border-color:var(--accent);color:var(--accent);font-weight:600}
+.disc-btn.sel-men{background:#0d1a2e;border-color:#6ea8fe;color:#6ea8fe;font-weight:600}
+
+/* PQ BLOCKS */
+.pq-block{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:.75rem}
+.pq-num{font-size:11px;color:var(--text3);margin-bottom:.4rem}
+.pq-text{font-size:15px;color:var(--text);margin-bottom:.85rem;line-height:1.5;font-weight:500}
+.pq-opts{display:flex;flex-direction:column;gap:.35rem}
+.pq-opt{display:flex;align-items:flex-start;gap:.75rem;padding:.55rem .85rem;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .12s;background:var(--bg3)}
+.pq-opt:hover{border-color:var(--border2);background:#1e2535}
+.pq-opt.sel{background:#0d2e22;border-color:var(--accent)}
+.pq-opt.sel .opt-label{color:var(--accent)}
+.opt-radio{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--border2);flex-shrink:0;margin-top:2px;transition:all .12s;display:flex;align-items:center;justify-content:center}
+.pq-opt.sel .opt-radio{border-color:var(--accent);background:var(--accent)}
+.pq-opt.sel .opt-radio::after{content:'';width:6px;height:6px;border-radius:50%;background:#0a0d12}
+.opt-label{font-size:14px;color:var(--text2);line-height:1.4}
+textarea.open-field{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:.7rem .85rem;font-size:14px;color:var(--text);font-family:inherit;resize:vertical;min-height:70px}
+textarea.open-field:focus{outline:none;border-color:var(--accent)}
+
+/* BUTTONS */
+.btn-primary{width:100%;padding:.85rem;background:var(--accent);border:none;border-radius:10px;font-size:15px;font-weight:700;color:#0a0d12;cursor:pointer;margin-top:1rem;letter-spacing:-.2px;transition:background .15s}
+.btn-primary:hover{background:var(--accent2)}
+.btn-back{background:none;border:1px solid var(--border2);border-radius:8px;padding:.5rem 1.1rem;font-size:14px;color:var(--text2);cursor:pointer;margin-top:.6rem;transition:all .12s}
+.btn-back:hover{border-color:var(--border2);color:var(--text)}
+
+/* RESULTS */
+.res-hero{padding:1.5rem;background:var(--bg2);border:1px solid var(--border2);border-radius:14px;margin-bottom:1.5rem}
+.res-aptitud-tag{display:inline-block;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:.75rem;letter-spacing:.03em}
+.res-profile-name{font-size:24px;font-weight:800;letter-spacing:-.5px;margin-bottom:.6rem}
+.res-profile-desc{font-size:14px;color:var(--text2);line-height:1.65}
+.res-section-title{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;margin-top:1.5rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.disc-res-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:1rem}
+.disc-res-card{padding:.9rem 1rem;border-radius:10px;border:1px solid}
+.disc-res-letter{font-size:22px;font-weight:800;margin-bottom:.15rem}
+.disc-res-pct{font-size:14px;font-weight:600;margin-bottom:.2rem}
+.disc-res-lbl{font-size:11px;opacity:.8}
+.bar-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.65rem}
+.bar-lbl{font-size:13px;color:var(--text2);width:145px;flex-shrink:0}
+.bar-bg{flex:1;height:5px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.bar-fill{height:5px;border-radius:3px;transition:width .5s}
+.bar-pct{font-size:12px;font-weight:600;width:34px;text-align:right;color:var(--text)}
+.alert-row{display:flex;gap:.5rem;align-items:flex-start;font-size:13px;color:var(--text2);margin-top:.65rem;line-height:1.5;padding:.6rem .85rem;background:var(--bg3);border-radius:8px;border-left:3px solid var(--warn)}
+.open-res-q{font-size:12px;color:var(--text3);margin-bottom:.2rem;margin-top:.75rem}
+.open-res-a{font-size:14px;color:var(--text2);line-height:1.6;padding:.6rem .85rem;background:var(--bg3);border-radius:8px}
+.info-row{display:flex;gap:1.5rem;margin-bottom:1rem;flex-wrap:wrap}
+.info-item{font-size:13px;color:var(--text2)}.info-item strong{color:var(--text);font-weight:600}
+
+/* HIDDEN FORM */
+#hidden-form{display:none}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="site-header">
+    <div class="logo">Amaya<span>.</span></div>
+    <div class="tagline">Asesores inmobiliarios · Evaluación de perfil 2026</div>
+    <div class="badge">Proceso de selección interno</div>
+  </header>
+
+  <!-- SCREEN 0: DATOS PERSONALES -->
+  <div id="s0" class="screen active">
+    <div class="screen-title">Hola, bienvenido/a.</div>
+    <div class="screen-sub">Este formulario nos ayuda a conocerte mejor. No hay respuestas correctas ni incorrectas — respondé con sinceridad. Tarda aproximadamente 15 minutos.</div>
+    <div class="sec">Datos personales</div>
+    <div class="fields-grid">
+      <div class="field"><label>Nombre completo</label><input type="text" id="f-nombre" placeholder="Tu nombre completo..."></div>
+      <div class="field"><label>Email</label><input type="email" id="f-email" placeholder="tu@email.com"></div>
+      <div class="field"><label>Teléfono / WhatsApp</label><input type="tel" id="f-tel" placeholder="+54 11 ..."></div>
+      <div class="field"><label>Edad</label><input type="number" id="f-edad" min="18" max="70" placeholder="Ej: 32"></div>
+      <div class="field"><label>Nivel de estudios</label>
+        <select id="f-estudios"><option value="">Seleccioná...</option><option>Secundario completo</option><option>Terciario en curso</option><option>Terciario completo</option><option>Universitario en curso</option><option>Universitario completo</option><option>Posgrado</option></select>
+      </div>
+      <div class="field"><label>Experiencia en ventas</label>
+        <select id="f-exp"><option value="">Seleccioná...</option><option>Sin experiencia</option><option>Menos de 1 año</option><option>1 a 3 años</option><option>3 a 5 años</option><option>Más de 5 años</option></select>
+      </div>
+      <div class="field"><label>Disponibilidad horaria</label>
+        <select id="f-disp"><option value="">Seleccioná...</option><option>Part-time (hasta 20hs semanales)</option><option>Full-time (40hs)</option><option>Full-time + fines de semana</option></select>
+      </div>
+      <div class="field"><label>¿Tenés vehículo propio?</label>
+        <select id="f-vehiculo"><option value="">Seleccioná...</option><option>Sí</option><option>No</option></select>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="startDisc()">Comenzar evaluación →</button>
+  </div>
+
+  <!-- SCREEN 1: DISC -->
+  <div id="s1" class="screen">
+    <div class="screen-title">Test DISC</div>
+    <div class="screen-sub">En cada bloque elegí la palabra que MÁS te describe <span style="color:var(--accent);font-weight:600">(verde)</span> y la que MENOS te describe <span style="color:#6ea8fe;font-weight:600">(azul)</span>. Una de cada tipo por bloque.</div>
+    <div class="prog-wrap">
+      <div class="prog-top"><span class="prog-label">Progreso DISC</span><span class="prog-pct" id="disc-pct">0%</span></div>
+      <div class="prog-bar-bg"><div class="prog-bar" id="disc-bar" style="width:0%"></div></div>
+    </div>
+    <div id="disc-container"></div>
+    <button class="btn-primary" onclick="goToPQ()">Continuar →</button>
+    <br><button class="btn-back" onclick="goScreen('s0')">← Volver</button>
+  </div>
+
+  <!-- SCREEN 2: PSICOTÉCNICO -->
+  <div id="s2" class="screen">
+    <div class="screen-title">Perfil comercial</div>
+    <div class="screen-sub">Preguntas sobre tu forma de trabajar, relacionarte con clientes y manejar situaciones del rubro inmobiliario.</div>
+    <div class="prog-wrap">
+      <div class="prog-top"><span class="prog-label">Progreso</span><span class="prog-pct" id="pq-pct">0%</span></div>
+      <div class="prog-bar-bg"><div class="prog-bar" id="pq-bar" style="width:0%"></div></div>
+    </div>
+    <div id="pq-container"></div>
+    <button class="btn-primary" onclick="submit()">Finalizar y ver resultado →</button>
+    <br><button class="btn-back" onclick="goScreen('s1')">← Volver</button>
+  </div>
+
+  <!-- SCREEN 3: RESULTADO CANDIDATO -->
+  <div id="s3" class="screen">
+    <div class="screen-title">Tu evaluación está completa.</div>
+    <div class="screen-sub">Gracias por completar el proceso. El equipo de Amaya revisará tu perfil y se contactará con vos a la brevedad.</div>
+    <div style="padding:1.5rem;background:var(--bg2);border:1px solid var(--border2);border-radius:14px;text-align:center">
+      <div style="font-size:40px;margin-bottom:.75rem">✓</div>
+      <div style="font-size:16px;font-weight:700;margin-bottom:.4rem">Respuestas enviadas correctamente</div>
+      <div style="font-size:14px;color:var(--text2)">El equipo recibirá tu evaluación y se comunicará con vos.</div>
+    </div>
+  </div>
+
+  <!-- SCREEN 4: PANEL EVALUADOR (acceso interno) -->
+  <div id="s4" class="screen">
+    <div id="resultado-content"></div>
+    <button class="btn-primary" onclick="resetAll()" style="margin-top:1.5rem">Evaluar otro ingresante →</button>
+  </div>
+
+</div>
+
+<!-- FORMSPREE HIDDEN FORM — reemplazá TUCODIGO por tu código de Formspree -->
+<form id="hidden-form" action="https://formspree.io/f/mdajwejk" method="POST">
+  <input type="hidden" name="_subject" value="Nueva evaluación Amaya — candidato/a">
+  <input type="hidden" name="nombre" id="hf-nombre">
+  <input type="hidden" name="email" id="hf-email">
+  <input type="hidden" name="telefono" id="hf-tel">
+  <input type="hidden" name="edad" id="hf-edad">
+  <input type="hidden" name="estudios" id="hf-estudios">
+  <input type="hidden" name="experiencia" id="hf-exp">
+  <input type="hidden" name="disponibilidad" id="hf-disp">
+  <input type="hidden" name="vehiculo" id="hf-vehiculo">
+  <input type="hidden" name="disc_D" id="hf-d">
+  <input type="hidden" name="disc_I" id="hf-i">
+  <input type="hidden" name="disc_S" id="hf-s">
+  <input type="hidden" name="disc_C" id="hf-c">
+  <input type="hidden" name="perfil_disc" id="hf-perfil">
+  <input type="hidden" name="aptitud" id="hf-aptitud">
+  <input type="hidden" name="score_comercial" id="hf-scorecom">
+  <input type="hidden" name="score_frustracion" id="hf-scorefrus">
+  <input type="hidden" name="score_autonomia" id="hf-scoreaut">
+  <input type="hidden" name="score_dinero" id="hf-scoredin">
+  <input type="hidden" name="score_prospeccion" id="hf-scorepros">
+  <input type="hidden" name="motivacion" id="hf-motiv">
+  <input type="hidden" name="debilidad" id="hf-debil">
+  <input type="hidden" name="resultado_completo" id="hf-completo">
+</form>
+
+<script>
+const discItems=[
+  {w:['Enérgico','Entusiasta','Leal','Preciso']},
+  {w:['Audaz','Sociable','Paciente','Metódico']},
+  {w:['Decidido','Inspirador','Estable','Cuidadoso']},
+  {w:['Competitivo','Optimista','Comprensivo','Analítico']},
+  {w:['Directo','Persuasivo','Confiable','Perfeccionista']},
+  {w:['Dominante','Expresivo','Calmado','Sistemático']},
+  {w:['Iniciador','Comunicativo','Servicial','Organizado']},
+  {w:['Resuelto','Influyente','Consistente','Exacto']},
+  {w:['Independiente','Animado','Tranquilo','Diplomático']},
+  {w:['Determinado','Colaborativo','Gentil','Riguroso']},
+  {w:['Fuerte','Amigable','Tolerante','Prudente']},
+  {w:['Emprendedor','Sociable','Pacificador','Detallista']},
+  {w:['Rápido','Espontáneo','Moderado','Reflexivo']},
+  {w:['Exigente','Contagioso','Apacible','Objetivo']},
+  {w:['Pionero','Divertido','Firme','Cauteloso']},
+  {w:['Controlador','Carismático','Seguro','Lógico']},
+  {w:['Activo','Popular','Sincero','Precavido']},
+  {w:['Atrevido','Abierto','Constante','Concienzudo']},
+  {w:['Orientado a resultados','Orientado a personas','Orientado al equipo','Orientado a calidad']},
+  {w:['Líder','Motivador','Colaborador','Evaluador']},
+  {w:['Visionario','Entusiasta','Armonioso','Ordenado']},
+  {w:['Persistente','Dinámico','Amable','Cuidadoso']},
+  {w:['Desafiante','Alegre','Conciliador','Estratégico']},
+  {w:['Seguro de sí','Convincente','Paciente','Analítico']},
+];
+
+const pqs=[
+  {dim:'comercial',t:'Estás trabajando en una venta importante y el cliente dice "lo voy a pensar". ¿Qué hacés?',opts:[{t:'Le digo que me avise cuando esté listo',v:1},{t:'Le pregunto qué dudas tiene e intento resolverlas',v:3},{t:'Acuerdo un seguimiento concreto: día, hora y canal',v:4},{t:'Identifico la objeción de fondo, la trabajo y defino el próximo paso',v:5},{t:'Le digo que hay pocas unidades para generar urgencia',v:2}]},
+  {dim:'comercial',t:'¿Cuál creés que es el factor más importante para cerrar una venta?',opts:[{t:'El precio: si está barato, se vende solo',v:1},{t:'Que la propiedad sea buena y esté bien ubicada',v:2},{t:'La confianza que genera el asesor',v:3},{t:'Entender la necesidad del comprador antes de mostrar',v:4},{t:'Necesidad detectada + propuesta ajustada + seguimiento constante',v:5}]},
+  {dim:'frustracion',t:'Llevás 3 semanas sin cerrar ninguna operación. ¿Cuál es tu reacción más honesta?',opts:[{t:'Pienso que este trabajo no es para mí',v:1},{t:'Me desmotivo bastante, aunque sigo',v:2},{t:'Lo tomo como parte del proceso, aunque me genera presión',v:3},{t:'Analizo qué estoy haciendo diferente y ajusto',v:4},{t:'Lo uso como combustible: intensifico el contacto y reviso mis procesos',v:5}]},
+  {dim:'frustracion',t:'Un cliente al que dedicaste mucho tiempo compró con otra inmobiliaria. ¿Cómo lo manejás?',opts:[{t:'Me enojo: siento que fue pérdida de tiempo',v:1},{t:'Me frustra mucho y me cuesta seguir el día',v:2},{t:'Lo acepto aunque me molesta, sigo adelante',v:3},{t:'Le deseo éxito y le pido que me refiera alguien',v:4},{t:'Pregunto qué valoró de la otra opción y lo uso para mejorar',v:5}]},
+  {dim:'comunicacion',t:'Una pareja viene a ver una propiedad. Uno quiere comprar, el otro tiene dudas. ¿Qué hacés?',opts:[{t:'Me enfoco en el que quiere comprar',v:2},{t:'Escucho a los dos pero apunto al más entusiasta',v:3},{t:'Dejo que hablen entre ellos',v:1},{t:'Identifico las dudas del que vacila y las trabajo',v:4},{t:'Genero espacio para el que duda y busco alinear a los dos',v:5}]},
+  {dim:'autonomia',t:'El trabajo tiene horarios flexibles y pocos controles. ¿Cómo te organizás?',opts:[{t:'Me cuesta la autogestión, necesito que me marquen el ritmo',v:1},{t:'Me organizo más o menos, aunque a veces me disperso',v:2},{t:'Tengo cierta rutina, aunque no es muy estructurada',v:3},{t:'Me fijo metas semanales y trato de cumplirlas',v:4},{t:'Gestiono con objetivos claros, prioridades y seguimiento diario',v:5}]},
+  {dim:'dinero',t:'Este trabajo implica ingresos variables por comisiones. ¿Cómo te sentís con eso?',opts:[{t:'Me genera mucha incertidumbre, prefiero sueldo fijo',v:1},{t:'Me adapto, aunque necesito un básico para sentirme seguro/a',v:2},{t:'Lo entiendo y lo acepto, aunque me toma tiempo',v:3},{t:'Me motiva ganar más según mi esfuerzo',v:4},{t:'Es exactamente lo que busco: sin techo de ingresos',v:5}]},
+  {dim:'dinero',t:'¿Cuánto tiempo podés sostener económicamente sin operaciones importantes?',opts:[{t:'Menos de un mes',v:1},{t:'Un mes aproximadamente',v:2},{t:'Dos a tres meses',v:3},{t:'Tres a seis meses',v:4},{t:'Más de seis meses',v:5}]},
+  {dim:'prospeccion',t:'¿Cómo te sentís contactando personas que no conocés para ofrecerles un servicio?',opts:[{t:'Me incomoda mucho, no lo haría',v:1},{t:'Me cuesta, pero puedo si es necesario',v:2},{t:'Lo hago sin problemas con un guión claro',v:3},{t:'Me sale natural, soy bueno/a iniciando conversaciones',v:4},{t:'Es una de mis fortalezas: construyo relaciones en cualquier contexto',v:5}]},
+  {dim:'prospeccion',t:'¿Tenés red de contactos que podrían derivarte clientes o propiedades?',opts:[{t:'No, tendría que armarla desde cero',v:1},{t:'Tengo algunos conocidos pero no los vería como clientes',v:2},{t:'Tengo red social activa aunque no en el rubro',v:3},{t:'Sí, contactos que podrían referirme clientes rápidamente',v:4},{t:'Sí, tengo red en el rubro y contactos activos',v:5}]},
+  {dim:'open',t:'¿Por qué querés trabajar en el sector inmobiliario?',open:true},
+  {dim:'open2',t:'¿Cuál considerás que es tu mayor debilidad para este rol? Sé honesto/a.',open:true},
+];
+
+const discMas={},discMen={};
+const pqAnswers={};
+const openAnswers={};
+
+function buildDisc(){
+  const c=document.getElementById('disc-container');
+  c.innerHTML='';
+  discItems.forEach((item,idx)=>{
+    const d=document.createElement('div');
+    d.className='disc-block';
+    d.innerHTML=`<div class="disc-block-num">Bloque ${idx+1} de ${discItems.length}</div>
+    <div class="disc-cols-header"><div class="disc-col-label mas">+ Más me describe</div><div class="disc-col-label men">- Menos me describe</div></div>
+    <div id="disc-rows-${idx}"></div>`;
+    c.appendChild(d);
+    const rows=d.querySelector(`#disc-rows-${idx}`);
+    item.w.forEach((w,wi)=>{
+      const r=document.createElement('div');
+      r.className='disc-row';
+      r.innerHTML=`<button type="button" class="disc-btn" id="dm_${idx}_${wi}" onclick="selDisc(${idx},${wi},'mas')">${w}</button>
+      <button type="button" class="disc-btn" id="dl_${idx}_${wi}" onclick="selDisc(${idx},${wi},'men')">${w}</button>`;
+      rows.appendChild(r);
+    });
+  });
+}
+
+function selDisc(b,w,t){
+  if(t==='mas'){
+    const p=discMas[b];
+    if(p!==undefined) document.getElementById(`dm_${b}_${p}`).classList.remove('sel-mas');
+    if(p===w){delete discMas[b];}
+    else{discMas[b]=w;document.getElementById(`dm_${b}_${w}`).classList.add('sel-mas');}
+  } else {
+    const p=discMen[b];
+    if(p!==undefined) document.getElementById(`dl_${b}_${p}`).classList.remove('sel-men');
+    if(p===w){delete discMen[b];}
+    else{discMen[b]=w;document.getElementById(`dl_${b}_${w}`).classList.add('sel-men');}
+  }
+  updateDiscProg();
+}
+
+function updateDiscProg(){
+  let c=0;
+  discItems.forEach((_,i)=>{if(discMas[i]!==undefined&&discMen[i]!==undefined)c++;});
+  const p=Math.round((c/discItems.length)*100);
+  document.getElementById('disc-bar').style.width=p+'%';
+  document.getElementById('disc-pct').textContent=p+'%';
+}
+
+function buildPQ(){
+  const c=document.getElementById('pq-container');
+  c.innerHTML='';
+  pqs.forEach((q,idx)=>{
+    const d=document.createElement('div');
+    d.className='pq-block';
+    if(q.open){
+      d.innerHTML=`<div class="pq-num">Pregunta ${idx+1}</div><div class="pq-text">${q.t}</div>
+      <textarea class="open-field" id="open_${idx}" placeholder="Escribí tu respuesta..." oninput="openAnswers['${q.dim}']=this.value;updatePQProg()"></textarea>`;
+    } else {
+      let optsH=`<div class="pq-opts">`;
+      q.opts.forEach((o,oi)=>{
+        optsH+=`<div class="pq-opt" id="popt_${idx}_${oi}" onclick="selPQ(${idx},${oi},${o.v},'${q.dim}')">
+          <div class="opt-radio"></div><div class="opt-label">${o.t}</div></div>`;
+      });
+      optsH+='</div>';
+      d.innerHTML=`<div class="pq-num">Pregunta ${idx+1}</div><div class="pq-text">${q.t}</div>${optsH}`;
+    }
+    c.appendChild(d);
+  });
+}
+
+function selPQ(qidx,oidx,val,dim){
+  document.querySelectorAll(`[id^="popt_${qidx}_"]`).forEach(el=>el.classList.remove('sel'));
+  document.getElementById(`popt_${qidx}_${oidx}`).classList.add('sel');
+  if(!pqAnswers[dim])pqAnswers[dim]=[];
+  const dimPqs=pqs.filter(p=>p.dim===dim&&!p.open);
+  const pos=dimPqs.indexOf(pqs[qidx]);
+  pqAnswers[dim][pos>=0?pos:0]=val;
+  updatePQProg();
+}
+
+function updatePQProg(){
+  const needed=pqs.filter(q=>!q.open);
+  let done=0;
+  needed.forEach((q,i)=>{const gi=pqs.indexOf(q);if(document.querySelector(`[id^="popt_${gi}_"].sel`))done++;});
+  const p=Math.round((done/needed.length)*100);
+  document.getElementById('pq-bar').style.width=p+'%';
+  document.getElementById('pq-pct').textContent=p+'%';
+}
+
+function goScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function startDisc(){
+  const n=document.getElementById('f-nombre').value.trim();
+  const e=document.getElementById('f-email').value.trim();
+  if(!n||!e){alert('Por favor completá al menos nombre y email para continuar.');return;}
+  buildDisc();buildPQ();goScreen('s1');
+}
+
+function goToPQ(){
+  let missing=0;
+  discItems.forEach((_,i)=>{if(discMas[i]===undefined||discMen[i]===undefined)missing++;});
+  if(missing>0){alert(`Faltán completar ${missing} bloque(s) del test DISC. Elegí MÁS y MENOS en cada bloque.`);return;}
+  goScreen('s2');
+}
+
+function calcScores(){
+  const D={m:0,l:0},I={m:0,l:0},S={m:0,l:0},C={m:0,l:0};
+  const map=[D,I,S,C];
+  discItems.forEach((_,i)=>{
+    const m=discMas[i],l=discMen[i];
+    if(m!==undefined)map[m].m++;
+    if(l!==undefined)map[l].l++;
+  });
+  const raw={D:D.m,I:I.m,S:S.m,C:C.m};
+  const total=raw.D+raw.I+raw.S+raw.C||1;
+  const pct={D:Math.round((raw.D/total)*100),I:Math.round((raw.I/total)*100),S:Math.round((raw.S/total)*100),C:Math.round((raw.C/total)*100)};
+
+  const dimDefs={comercial:[],frustracion:[],comunicacion:[],autonomia:[],dinero:[],prospeccion:[]};
+  pqs.forEach((q,idx)=>{
+    if(q.open)return;
+    const el=document.querySelector(`[id^="popt_${idx}_"].sel`);
+    if(el&&dimDefs[q.dim]!==undefined){
+      const oi=parseInt(el.id.split('_')[2]);
+      dimDefs[q.dim].push(q.opts[oi].v);
+    }
+  });
+
+  const dimScores={};
+  for(const [k,arr] of Object.entries(dimDefs)){
+    if(!arr.length){dimScores[k]=50;continue;}
+    dimScores[k]=Math.round((arr.reduce((a,b)=>a+b,0)/(arr.length*5))*100);
+  }
+  return {pct,dimScores};
+}
+
+function submit(){
+  const needed=pqs.filter(q=>!q.open);
+  let missing=0;
+  needed.forEach((q,i)=>{const gi=pqs.indexOf(q);if(!document.querySelector(`[id^="popt_${gi}_"].sel`))missing++;});
+  if(missing>0){alert(`Faltán responder ${missing} pregunta(s).`);return;}
+
+  const {pct,dimScores}=calcScores();
+  const sorted=Object.entries(pct).sort((a,b)=>b[1]-a[1]);
+  const primary=sorted[0][0],secondary=sorted[1][0];
+  const prof=getProfile(primary,secondary,document.getElementById('f-nombre').value||'El candidato');
+
+  document.getElementById('hf-nombre').value=document.getElementById('f-nombre').value;
+  document.getElementById('hf-email').value=document.getElementById('f-email').value;
+  document.getElementById('hf-tel').value=document.getElementById('f-tel').value;
+  document.getElementById('hf-edad').value=document.getElementById('f-edad').value;
+  document.getElementById('hf-estudios').value=document.getElementById('f-estudios').value;
+  document.getElementById('hf-exp').value=document.getElementById('f-exp').value;
+  document.getElementById('hf-disp').value=document.getElementById('f-disp').value;
+  document.getElementById('hf-vehiculo').value=document.getElementById('f-vehiculo').value;
+  document.getElementById('hf-d').value=pct.D+'%';
+  document.getElementById('hf-i').value=pct.I+'%';
+  document.getElementById('hf-s').value=pct.S+'%';
+  document.getElementById('hf-c').value=pct.C+'%';
+  document.getElementById('hf-perfil').value=prof.name;
+  document.getElementById('hf-aptitud').value=prof.aptitud;
+  document.getElementById('hf-scorecom').value=dimScores.comercial+'%';
+  document.getElementById('hf-scorefrus').value=dimScores.frustracion+'%';
+  document.getElementById('hf-scoreaut').value=dimScores.autonomia+'%';
+  document.getElementById('hf-scoredin').value=dimScores.dinero+'%';
+  document.getElementById('hf-scorepros').value=dimScores.prospeccion+'%';
+  document.getElementById('hf-motiv').value=openAnswers['open']||'';
+  document.getElementById('hf-debil').value=openAnswers['open2']||'';
+  document.getElementById('hf-completo').value=JSON.stringify({pct,dimScores,prof:prof.name,aptitud:prof.aptitud});
+
+  const form=document.getElementById('hidden-form');
+  const fd=new FormData(form);
+  fetch(form.action,{method:'POST',body:fd,headers:{'Accept':'application/json'}})
+    .then(r=>{if(r.ok)console.log('Enviado OK');else console.log('Error Formspree');})
+    .catch(()=>console.log('Sin conexión o Formspree no configurado'));
+
+  renderResult(pct,dimScores,prof);
+  goScreen('s4');
+}
+
+const discColors={
+  D:{bg:'#1a0e0e',border:'#6b1f1f',text:'#f09595',label:'Dominancia'},
+  I:{bg:'#1a1400',border:'#6b4a00',text:'#f0a500',label:'Influencia'},
+  S:{bg:'#0d2018',border:'#0f4a2a',text:'#2de0a5',label:'Estabilidad'},
+  C:{bg:'#0d1028',border:'#1a2560',text:'#6ea8fe',label:'Conciencia'}
+};
+
+const dimLabels={comercial:'Orientación comercial',frustracion:'Tolerancia a la frustración',comunicacion:'Comunicación y empatía',autonomia:'Autonomía y organización',dinero:'Relación con comisiones',prospeccion:'Prospección y red'};
+
+function getProfile(p,s,nombre){
+  const profiles={
+    DI:{name:'Impulsor social',desc:`${nombre} combina alta orientación a resultados con fuerte capacidad de influencia. Es directo, entusiasta y cierra ventas con naturalidad. En inmobiliaria este perfil es el más efectivo: genera confianza rápidamente, mantiene la iniciativa y no teme el rechazo.`,aptitud:'Muy apto/a',ac:'#0d2018',at:'#2de0a5',ab:'#0f4a2a'},
+    ID:{name:'Promotor activo',desc:`${nombre} tiene alta capacidad de influencia respaldada por orientación a resultados. Cierra bien, comunica con claridad y mantiene la motivación en rachas difíciles. Perfil muy adecuado para ventas de alto valor.`,aptitud:'Muy apto/a',ac:'#0d2018',at:'#2de0a5',ab:'#0f4a2a'},
+    IS:{name:'Consejero de confianza',desc:`${nombre} combina empatía con estabilidad. Construye relaciones sólidas y genera confianza genuina. Puede necesitar desarrollar más la iniciativa comercial, pero es excelente para captar y fidelizar clientes.`,aptitud:'Apto/a con potencial',ac:'#1a1400',at:'#f0a500',ab:'#6b4a00'},
+    SI:{name:'Relacionador empático',desc:`${nombre} tiene facilidad para conectar con personas y generar vínculos duraderos. Necesita trabajar la proactividad en el cierre y el seguimiento sistemático.`,aptitud:'Apto/a con potencial',ac:'#1a1400',at:'#f0a500',ab:'#6b4a00'},
+    DC:{name:'Ejecutor analítico',desc:`${nombre} combina orientación a resultados con precisión. Decide rápido y lo sustenta bien. Muy efectivo en negociación, aunque deberá trabajar la calidez en el trato.`,aptitud:'Apto/a con potencial',ac:'#1a1400',at:'#f0a500',ab:'#6b4a00'},
+    CD:{name:'Estratega decidido',desc:`${nombre} analiza bien antes de actuar y cuando decide lo hace con firmeza. Muy efectivo en propiedades complejas. Necesita desarrollar la iniciativa en prospección.`,aptitud:'A evaluar',ac:'#1a0e0e',at:'#f09595',ab:'#6b1f1f'},
+    SC:{name:'Especialista metódico',desc:`${nombre} es ordenado, confiable y detallista. Excelente para el seguimiento, pero el rol comercial activo puede resultarle exigente. Requiere acompañamiento en prospección y cierre.`,aptitud:'A evaluar',ac:'#1a0e0e',at:'#f09595',ab:'#6b1f1f'},
+    CS:{name:'Analista reflexivo',desc:`${nombre} prioriza calidad y precisión. Perfil más técnico que comercial. Puede desempeñarse bien en análisis de mercado o valuaciones, pero el rol de asesor activo requiere trabajar mucho la iniciativa.`,aptitud:'No recomendado para ventas activas',ac:'#1a0e0e',at:'#f09595',ab:'#6b1f1f'},
+  };
+  return profiles[p+s]||{name:'Perfil mixto',desc:`${nombre} muestra un perfil equilibrado entre ${discColors[p].label} y ${discColors[s].label}. Se recomienda entrevista en profundidad.`,aptitud:'A evaluar en entrevista',ac:'#1a1400',at:'#f0a500',ab:'#6b4a00'};
+}
+
+function renderResult(pct,dimScores,prof){
+  const nombre=document.getElementById('f-nombre').value||'Candidato/a';
+  const exp=document.getElementById('f-exp').value||'—';
+  const disp=document.getElementById('f-disp').value||'—';
+  const vehiculo=document.getElementById('f-vehiculo').value||'—';
+  const motiv=openAnswers['open']||'(sin respuesta)';
+  const debil=openAnswers['open2']||'(sin respuesta)';
+
+  const discCardsH=Object.entries(discColors).map(([k,c])=>`
+    <div class="disc-res-card" style="background:${c.bg};border-color:${c.border}">
+      <div class="disc-res-letter" style="color:${c.text}">${k}</div>
+      <div class="disc-res-pct" style="color:${c.text}">${pct[k]}%</div>
+      <div class="disc-res-lbl" style="color:${c.text}">${c.label}</div>
+    </div>`).join('');
+
+  const barColors={comercial:'#2de0a5',frustracion:'#2de0a5',comunicacion:'#6ea8fe',autonomia:'#f0a500',dinero:'#f0a500',prospeccion:'#2de0a5'};
+  const barsH=Object.entries(dimLabels).map(([k,lbl])=>{
+    const v=dimScores[k]??50;
+    const col=v>=70?'#2de0a5':v>=50?barColors[k]:'#e24b4a';
+    return `<div class="bar-row"><span class="bar-lbl">${lbl}</span><div class="bar-bg"><div class="bar-fill" style="width:${v}%;background:${col}"></div></div><span class="bar-pct">${v}%</span></div>`;
+  }).join('');
+
+  const weakDims=Object.entries(dimScores).filter(([,v])=>v<50).map(([k])=>dimLabels[k]);
+  const alertH=weakDims.length?`<div class="alert-row">⚠ Dimensiones a trabajar: <strong>${weakDims.join(', ')}</strong></div>`:'';
+
+  document.getElementById('resultado-content').innerHTML=`
+    <div class="screen-title">${nombre}</div>
+    <div class="info-row">
+      <span class="info-item">Experiencia: <strong>${exp}</strong></span>
+      <span class="info-item">Disponibilidad: <strong>${disp}</strong></span>
+      <span class="info-item">Vehículo: <strong>${vehiculo}</strong></span>
+    </div>
+
+    <div class="res-section-title">Perfil DISC</div>
+    <div class="disc-res-grid">${discCardsH}</div>
+
+    <div class="res-section-title">Diagnóstico</div>
+    <div class="res-hero" style="background:${prof.ac};border-color:${prof.ab}">
+      <div class="res-aptitud-tag" style="background:${prof.ab};color:${prof.at}">${prof.aptitud}</div>
+      <div class="res-profile-name" style="color:${prof.at}">${prof.name}</div>
+      <div class="res-profile-desc">${prof.desc}</div>
+      ${alertH}
+    </div>
+
+    <div class="res-section-title">Competencias comerciales</div>
+    ${barsH}
+
+    <div class="res-section-title">Respuestas abiertas</div>
+    <div class="open-res-q">¿Por qué querés trabajar en el sector inmobiliario?</div>
+    <div class="open-res-a">${motiv}</div>
+    <div class="open-res-q">¿Cuál es tu mayor debilidad para este rol?</div>
+    <div class="open-res-a">${debil}</div>
+  `;
+}
+
+function resetAll(){
+  Object.keys(discMas).forEach(k=>delete discMas[k]);
+  Object.keys(discMen).forEach(k=>delete discMen[k]);
+  Object.keys(pqAnswers).forEach(k=>delete pqAnswers[k]);
+  Object.keys(openAnswers).forEach(k=>delete openAnswers[k]);
+  ['f-nombre','f-email','f-tel','f-edad'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['f-estudios','f-exp','f-disp','f-vehiculo'].forEach(id=>{const el=document.getElementById(id);if(el)el.selectedIndex=0;});
+  goScreen('s0');
+}
+</script>
+</body>
+</html>
