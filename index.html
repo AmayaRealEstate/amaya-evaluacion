@@ -7,96 +7,95 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0d12;
-  --bg2:#111520;
-  --bg3:#181e2a;
-  --border:#ffffff14;
-  --border2:#ffffff22;
-  --accent:#5bc8f5;
-  --accent2:#3aaed8;
-  --text:#ffffff;
-  --text2:#a0aab8;
-  --text3:#60697a;
-  --danger:#e24b4a;
-  --warn:#f0a500;
+  --bg:#0a0d12;--bg2:#111520;--bg3:#181e2a;
+  --border:#ffffff14;--border2:#ffffff22;
+  --accent:#5bc8f5;--accent2:#3aaed8;
+  --text:#ffffff;--text2:#a0aab8;--text3:#60697a;
+  --danger:#e24b4a;--warn:#f0a500;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Inter','Helvetica Neue',Arial,sans-serif;min-height:100vh;font-size:16px;line-height:1.6}
-.container{max-width:680px;margin:0 auto;padding:2rem 1.25rem 4rem}
-.site-header{padding:1.5rem 0 2.5rem;border-bottom:1px solid var(--border);margin-bottom:2.5rem}
-.logo{font-size:26px;font-weight:800;letter-spacing:-.5px;color:var(--text)}
+.container{max-width:620px;margin:0 auto;padding:2rem 1.25rem 4rem}
+.site-header{padding:1.25rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:2rem}
+.logo{font-size:24px;font-weight:800;letter-spacing:-.5px}
 .logo span{color:#ffffff}
-.tagline{font-size:13px;color:var(--text3);margin-top:.25rem}
-.badge{display:inline-block;font-size:11px;padding:3px 10px;border-radius:20px;background:var(--bg3);border:1px solid var(--border2);color:var(--text2);margin-top:.6rem}
+.badge{display:inline-block;font-size:11px;padding:3px 10px;border-radius:20px;background:var(--bg3);border:1px solid var(--border2);color:var(--text2);margin-top:.5rem}
 .screen{display:none}.screen.active{display:block}
-.prog-wrap{margin-bottom:2rem}
-.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.screen-title{font-size:26px;font-weight:800;letter-spacing:-.5px;margin-bottom:.4rem;line-height:1.2}
+.screen-sub{font-size:14px;color:var(--text2);margin-bottom:1.75rem;line-height:1.6}
+.prog-wrap{margin-bottom:1.75rem}
+.prog-top{display:flex;justify-content:space-between;margin-bottom:.4rem}
 .prog-label{font-size:12px;color:var(--text3)}
 .prog-pct{font-size:12px;font-weight:600;color:var(--accent)}
 .prog-bar-bg{height:3px;background:var(--bg3);border-radius:2px;overflow:hidden}
 .prog-bar{height:3px;background:var(--accent);border-radius:2px;transition:width .3s}
-.sec{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
-.screen-title{font-size:28px;font-weight:800;letter-spacing:-.5px;margin-bottom:.4rem;line-height:1.2}
-.screen-sub{font-size:14px;color:var(--text2);margin-bottom:2rem;line-height:1.6}
-.fields-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
-.field{display:flex;flex-direction:column;gap:.4rem}
+.sec{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.85rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.fields-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:.65rem}
+.field{display:flex;flex-direction:column;gap:.35rem}
 .field label{font-size:12px;color:var(--text2);font-weight:500}
-.field input,.field select{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:.6rem .85rem;font-size:14px;color:var(--text);font-family:inherit;transition:border .15s}
+.field input,.field select{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:.55rem .8rem;font-size:14px;color:var(--text);font-family:inherit}
 .field input:focus,.field select:focus{outline:none;border-color:var(--accent)}
 .field select option{background:var(--bg2)}
-.disc-block{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:.75rem}
-.disc-block-num{font-size:11px;color:var(--text3);margin-bottom:.75rem}
-.disc-cols-header{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.4rem}
-.disc-col-label{font-size:11px;color:var(--text3);text-align:center;padding:3px 0}
+
+/* DISC */
+.disc-block{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:.9rem 1.1rem;margin-bottom:.65rem}
+.disc-block-num{font-size:11px;color:var(--text3);margin-bottom:.6rem}
+.disc-cols-header{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.35rem}
+.disc-col-label{font-size:11px;color:var(--text3);text-align:center}
 .disc-col-label.mas{color:var(--accent)}
 .disc-col-label.men{color:#a78bfa}
-.disc-row{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.4rem}
-.disc-btn{padding:.5rem .6rem;border:1px solid var(--border2);border-radius:8px;font-size:14px;color:var(--text2);cursor:pointer;text-align:center;transition:all .12s;background:var(--bg3)}
+.disc-row{display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-bottom:.35rem}
+.disc-btn{padding:.45rem .5rem;border:1px solid var(--border2);border-radius:7px;font-size:13px;color:var(--text2);cursor:pointer;text-align:center;transition:all .12s;background:var(--bg3)}
 .disc-btn:hover{color:var(--text);background:#1e2535}
 .disc-btn.sel-mas{background:#0a1e2e;border-color:var(--accent);color:var(--accent);font-weight:600}
 .disc-btn.sel-men{background:#130e28;border-color:#a78bfa;color:#a78bfa;font-weight:600}
-.pq-block{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:.75rem}
-.pq-num{font-size:11px;color:var(--text3);margin-bottom:.4rem}
-.pq-text{font-size:15px;color:var(--text);margin-bottom:.85rem;line-height:1.5;font-weight:500}
-.pq-opts{display:flex;flex-direction:column;gap:.35rem}
-.pq-opt{display:flex;align-items:flex-start;gap:.75rem;padding:.55rem .85rem;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .12s;background:var(--bg3)}
+
+/* PQ */
+.pq-block{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:.9rem 1.1rem;margin-bottom:.65rem}
+.pq-num{font-size:11px;color:var(--text3);margin-bottom:.35rem}
+.pq-text{font-size:15px;color:var(--text);margin-bottom:.75rem;line-height:1.5;font-weight:500}
+.pq-context{font-size:13px;color:var(--text3);margin-bottom:.75rem;line-height:1.5;font-style:italic;padding:.5rem .75rem;background:var(--bg3);border-radius:7px;border-left:2px solid var(--accent)}
+.pq-opts{display:flex;flex-direction:column;gap:.3rem}
+.pq-opt{display:flex;align-items:flex-start;gap:.65rem;padding:.5rem .8rem;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .12s;background:var(--bg3)}
 .pq-opt:hover{border-color:var(--border2);background:#1e2535}
 .pq-opt.sel{background:#0a1e2e;border-color:var(--accent)}
 .pq-opt.sel .opt-label{color:var(--accent)}
-.opt-radio{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--border2);flex-shrink:0;margin-top:2px;transition:all .12s;display:flex;align-items:center;justify-content:center}
+.opt-radio{width:15px;height:15px;border-radius:50%;border:1.5px solid var(--border2);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center}
 .pq-opt.sel .opt-radio{border-color:var(--accent);background:var(--accent)}
-.pq-opt.sel .opt-radio::after{content:'';width:6px;height:6px;border-radius:50%;background:#0a0d12}
-.opt-label{font-size:14px;color:var(--text2);line-height:1.4}
-textarea.open-field{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:.7rem .85rem;font-size:14px;color:var(--text);font-family:inherit;resize:vertical;min-height:70px}
+.pq-opt.sel .opt-radio::after{content:'';width:5px;height:5px;border-radius:50%;background:#0a0d12}
+.opt-label{font-size:13px;color:var(--text2);line-height:1.4}
+textarea.open-field{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:.65rem .8rem;font-size:14px;color:var(--text);font-family:inherit;resize:vertical;min-height:65px}
 textarea.open-field:focus{outline:none;border-color:var(--accent)}
-.btn-primary{width:100%;padding:.85rem;background:var(--accent);border:none;border-radius:10px;font-size:15px;font-weight:700;color:#0a0d12;cursor:pointer;margin-top:1rem;letter-spacing:-.2px;transition:background .15s}
+
+.btn-primary{width:100%;padding:.8rem;background:var(--accent);border:none;border-radius:10px;font-size:15px;font-weight:700;color:#0a0d12;cursor:pointer;margin-top:.85rem;transition:background .15s}
 .btn-primary:hover{background:var(--accent2)}
-.btn-back{background:none;border:1px solid var(--border2);border-radius:8px;padding:.5rem 1.1rem;font-size:14px;color:var(--text2);cursor:pointer;margin-top:.6rem}
-.btn-back:hover{color:var(--text)}
-.disc-res-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:1rem}
-.disc-res-card{padding:.9rem 1rem;border-radius:10px;border:1px solid}
-.disc-res-letter{font-size:22px;font-weight:800;margin-bottom:.15rem}
-.disc-res-pct{font-size:14px;font-weight:600;margin-bottom:.2rem}
+.btn-back{background:none;border:1px solid var(--border2);border-radius:8px;padding:.45rem 1rem;font-size:13px;color:var(--text2);cursor:pointer;margin-top:.5rem}
+
+/* RESULTADO */
+.res-section-title{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.85rem;margin-top:1.5rem;padding-bottom:.45rem;border-bottom:1px solid var(--border)}
+.disc-res-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.85rem}
+.disc-res-card{padding:.85rem 1rem;border-radius:10px;border:1px solid}
+.disc-res-letter{font-size:20px;font-weight:800;margin-bottom:.1rem}
+.disc-res-pct{font-size:13px;font-weight:600;margin-bottom:.15rem}
 .disc-res-lbl{font-size:11px;opacity:.8}
-.res-section-title{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;margin-top:1.5rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
-.res-hero{padding:1.5rem;background:var(--bg2);border:1px solid var(--border2);border-radius:14px;margin-bottom:1rem}
-.res-aptitud-tag{display:inline-block;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:.75rem}
-.res-profile-name{font-size:24px;font-weight:800;letter-spacing:-.5px;margin-bottom:.75rem}
-.res-profile-desc{font-size:15px;line-height:1.75;margin-bottom:1rem}
-.dim-block{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:.75rem}
-.dim-block-title{font-size:13px;font-weight:700;margin-bottom:.3rem}
-.dim-block-bar-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.6rem}
-.dim-block-bar-bg{flex:1;height:5px;background:var(--bg3);border-radius:3px;overflow:hidden}
-.dim-block-bar-fill{height:5px;border-radius:3px}
-.dim-block-pct{font-size:13px;font-weight:700;width:34px;text-align:right}
-.dim-block-desc{font-size:13px;color:var(--text2);line-height:1.6}
-.alert-block{padding:.85rem 1rem;background:#1a1000;border:1px solid var(--warn);border-radius:10px;margin-bottom:.75rem}
-.alert-block-title{font-size:12px;font-weight:700;color:var(--warn);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.05em}
-.alert-block-item{font-size:13px;color:#d4a847;line-height:1.6;margin-bottom:.3rem;padding-left:.75rem;border-left:2px solid var(--warn)}
-.open-res-q{font-size:12px;color:var(--text3);margin-bottom:.3rem;margin-top:.85rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600}
-.open-res-a{font-size:14px;color:var(--text2);line-height:1.65;padding:.75rem 1rem;background:var(--bg2);border-radius:10px;border:1px solid var(--border)}
-.info-chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.25rem}
-.chip{font-size:12px;padding:4px 12px;border-radius:20px;background:var(--bg3);border:1px solid var(--border2);color:var(--text2)}
+.res-hero{padding:1.25rem;background:var(--bg2);border:1px solid var(--border2);border-radius:14px;margin-bottom:.85rem}
+.res-aptitud-tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:.65rem}
+.res-profile-name{font-size:22px;font-weight:800;letter-spacing:-.5px;margin-bottom:.65rem}
+.res-profile-desc{font-size:14px;line-height:1.7;margin-bottom:.85rem}
+.dim-block{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:.85rem 1.1rem;margin-bottom:.6rem}
+.dim-block-title{font-size:13px;font-weight:700;margin-bottom:.25rem}
+.dim-bar-row{display:flex;align-items:center;gap:.65rem;margin-bottom:.5rem}
+.dim-bar-bg{flex:1;height:4px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.dim-bar-fill{height:4px;border-radius:3px}
+.dim-bar-pct{font-size:12px;font-weight:700;width:30px;text-align:right}
+.dim-desc{font-size:13px;color:var(--text2);line-height:1.6}
+.alert-block{padding:.8rem 1rem;background:#1a1000;border:1px solid var(--warn);border-radius:10px;margin-bottom:.65rem}
+.alert-title{font-size:11px;font-weight:700;color:var(--warn);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.05em}
+.alert-item{font-size:13px;color:#d4a847;line-height:1.55;margin-bottom:.25rem;padding-left:.65rem;border-left:2px solid var(--warn)}
+.open-res-q{font-size:11px;color:var(--text3);margin-bottom:.25rem;margin-top:.75rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.open-res-a{font-size:14px;color:var(--text2);line-height:1.65;padding:.7rem .9rem;background:var(--bg2);border-radius:10px;border:1px solid var(--border)}
+.info-chips{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:1.1rem}
+.chip{font-size:12px;padding:3px 10px;border-radius:20px;background:var(--bg3);border:1px solid var(--border2);color:var(--text2)}
 .chip strong{color:var(--text)}
 #hidden-form{display:none}
 </style>
@@ -106,73 +105,71 @@ textarea.open-field:focus{outline:none;border-color:var(--accent)}
 
 <header class="site-header">
   <div class="logo">Amaya<span>.</span></div>
-  <div class="tagline">Asesores inmobiliarios · Evaluación de perfil 2026</div>
-  <div class="badge">Proceso de selección interno</div>
+  <div class="badge">Evaluación de perfil · Asesores inmobiliarios 2026</div>
 </header>
 
 <!-- S0: DATOS -->
 <div id="s0" class="screen active">
   <div class="screen-title">Hola, bienvenido/a.</div>
-  <div class="screen-sub">Este formulario nos ayuda a conocerte mejor. No hay respuestas correctas ni incorrectas — respondé con sinceridad. Tarda aproximadamente 15 minutos.</div>
+  <div class="screen-sub">Completá tus datos para comenzar. No hay respuestas correctas ni incorrectas.</div>
   <div class="sec">Datos personales</div>
   <div class="fields-grid">
-    <div class="field"><label>Nombre completo</label><input type="text" id="f-nombre" placeholder="Tu nombre completo..."></div>
+    <div class="field"><label>Nombre completo</label><input type="text" id="f-nombre" placeholder="Tu nombre..."></div>
     <div class="field"><label>Email</label><input type="email" id="f-email" placeholder="tu@email.com"></div>
     <div class="field"><label>Teléfono / WhatsApp</label><input type="tel" id="f-tel" placeholder="+54 11 ..."></div>
-    <div class="field"><label>Edad</label><input type="number" id="f-edad" min="18" max="70" placeholder="Ej: 32"></div>
-    <div class="field"><label>Nivel de estudios</label>
-      <select id="f-estudios"><option value="">Seleccioná...</option><option>Secundario completo</option><option>Terciario en curso</option><option>Terciario completo</option><option>Universitario en curso</option><option>Universitario completo</option><option>Posgrado</option></select>
-    </div>
+    <div class="field"><label>Edad</label><input type="number" id="f-edad" min="18" max="70" placeholder="32"></div>
     <div class="field"><label>Experiencia en ventas</label>
       <select id="f-exp"><option value="">Seleccioná...</option><option>Sin experiencia</option><option>Menos de 1 año</option><option>1 a 3 años</option><option>3 a 5 años</option><option>Más de 5 años</option></select>
     </div>
-    <div class="field"><label>Disponibilidad horaria</label>
-      <select id="f-disp"><option value="">Seleccioná...</option><option>Part-time (hasta 20hs semanales)</option><option>Full-time (40hs)</option><option>Full-time + fines de semana</option></select>
+    <div class="field"><label>Disponibilidad</label>
+      <select id="f-disp"><option value="">Seleccioná...</option><option>Part-time (hasta 20hs)</option><option>Full-time (40hs)</option><option>Full-time + fines de semana</option></select>
     </div>
-    <div class="field"><label>¿Tenés vehículo propio?</label>
+    <div class="field"><label>Vehículo propio</label>
       <select id="f-vehiculo"><option value="">Seleccioná...</option><option>Sí</option><option>No</option></select>
     </div>
+    <div class="field"><label>Estudios</label>
+      <select id="f-estudios"><option value="">Seleccioná...</option><option>Secundario completo</option><option>Terciario en curso</option><option>Terciario completo</option><option>Universitario en curso</option><option>Universitario completo</option><option>Posgrado</option></select>
+    </div>
   </div>
-  <button class="btn-primary" onclick="startDisc()">Comenzar evaluación →</button>
+  <button class="btn-primary" onclick="startDisc()">Comenzar →</button>
 </div>
 
 <!-- S1: DISC -->
 <div id="s1" class="screen">
-  <div class="screen-title">Test DISC</div>
-  <div class="screen-sub">En cada bloque elegí la palabra que MÁS te describe <span style="color:var(--accent);font-weight:600">(celeste)</span> y la que MENOS te describe <span style="color:#a78bfa;font-weight:600">(violeta)</span>. Una de cada tipo por bloque.</div>
+  <div class="screen-title">Parte 1 — Perfil de personalidad</div>
+  <div class="screen-sub">En cada bloque elegí la palabra que MÁS te describe <span style="color:var(--accent);font-weight:600">(celeste)</span> y la que MENOS te describe <span style="color:#a78bfa;font-weight:600">(violeta)</span>. Respondé rápido, con lo primero que sentís.</div>
   <div class="prog-wrap">
-    <div class="prog-top"><span class="prog-label">Progreso DISC</span><span class="prog-pct" id="disc-pct">0%</span></div>
+    <div class="prog-top"><span class="prog-label">Progreso</span><span class="prog-pct" id="disc-pct">0%</span></div>
     <div class="prog-bar-bg"><div class="prog-bar" id="disc-bar" style="width:0%"></div></div>
   </div>
   <div id="disc-container"></div>
-  <button class="btn-primary" onclick="goToPQ()">Continuar →</button>
+  <button class="btn-primary" onclick="goToPQ()">Continuar a Parte 2 →</button>
   <br><button class="btn-back" onclick="goScreen('s0')">← Volver</button>
 </div>
 
-<!-- S2: PSICOTÉCNICO -->
+<!-- S2: COMERCIAL -->
 <div id="s2" class="screen">
-  <div class="screen-title">Perfil comercial</div>
-  <div class="screen-sub">Preguntas sobre tu forma de trabajar, relacionarte con clientes y manejar situaciones del rubro inmobiliario.</div>
+  <div class="screen-title">Parte 2 — Perfil comercial</div>
+  <div class="screen-sub">Situaciones reales del rubro. Leé con atención — algunas opciones parecen similares pero no lo son.</div>
   <div class="prog-wrap">
     <div class="prog-top"><span class="prog-label">Progreso</span><span class="prog-pct" id="pq-pct">0%</span></div>
     <div class="prog-bar-bg"><div class="prog-bar" id="pq-bar" style="width:0%"></div></div>
   </div>
   <div id="pq-container"></div>
-  <button class="btn-primary" onclick="submitForm()">Finalizar y ver resultado →</button>
+  <button class="btn-primary" onclick="submitForm()">Finalizar →</button>
   <br><button class="btn-back" onclick="goScreen('s1')">← Volver</button>
 </div>
 
-<!-- S3: GRACIAS CANDIDATO -->
+<!-- S3: GRACIAS -->
 <div id="s3" class="screen">
-  <div class="screen-title">¡Gracias, Amaya te contactará pronto!</div>
-  <div style="padding:2rem;background:var(--bg2);border:1px solid var(--border2);border-radius:14px;text-align:center;margin-top:1rem">
+  <div style="text-align:center;padding:3rem 1rem">
     <div style="font-size:48px;margin-bottom:1rem">✓</div>
-    <div style="font-size:16px;font-weight:700;margin-bottom:.5rem">Evaluación completada</div>
-    <div style="font-size:14px;color:var(--text2);line-height:1.6">El equipo de Amaya revisará tu perfil y se comunicará con vos a la brevedad por WhatsApp o email.</div>
+    <div class="screen-title" style="text-align:center">¡Gracias!</div>
+    <div class="screen-sub" style="text-align:center">El equipo de Amaya revisará tu perfil y se contactará con vos pronto.</div>
   </div>
 </div>
 
-<!-- S4: RESULTADO EVALUADOR -->
+<!-- S4: RESULTADO -->
 <div id="s4" class="screen">
   <div id="resultado-content"></div>
   <button class="btn-primary" onclick="resetAll()" style="margin-top:1.5rem">Evaluar otro ingresante →</button>
@@ -182,72 +179,117 @@ textarea.open-field:focus{outline:none;border-color:var(--accent)}
 
 <form id="hidden-form" action="https://formspree.io/f/mdajwejk" method="POST">
   <input type="hidden" name="_subject" id="hf-subject">
-  <input type="hidden" name="nombre" id="hf-nombre">
-  <input type="hidden" name="email" id="hf-email">
-  <input type="hidden" name="telefono" id="hf-tel">
-  <input type="hidden" name="edad" id="hf-edad">
-  <input type="hidden" name="estudios" id="hf-estudios">
-  <input type="hidden" name="experiencia" id="hf-exp">
-  <input type="hidden" name="disponibilidad" id="hf-disp">
-  <input type="hidden" name="vehiculo" id="hf-vehiculo">
+  <input type="hidden" name="Nombre" id="hf-nombre">
+  <input type="hidden" name="Email" id="hf-email">
+  <input type="hidden" name="Telefono" id="hf-tel">
+  <input type="hidden" name="Edad" id="hf-edad">
+  <input type="hidden" name="Estudios" id="hf-estudios">
+  <input type="hidden" name="Experiencia_ventas" id="hf-exp">
+  <input type="hidden" name="Disponibilidad" id="hf-disp">
+  <input type="hidden" name="Vehiculo" id="hf-vehiculo">
   <input type="hidden" name="D_Dominancia" id="hf-d">
   <input type="hidden" name="I_Influencia" id="hf-i">
   <input type="hidden" name="S_Estabilidad" id="hf-s">
   <input type="hidden" name="C_Conciencia" id="hf-c">
-  <input type="hidden" name="TIPO_DE_PERFIL" id="hf-perfil">
-  <input type="hidden" name="APTITUD" id="hf-aptitud">
+  <input type="hidden" name="Tipo_de_perfil" id="hf-perfil">
+  <input type="hidden" name="Aptitud" id="hf-aptitud">
   <input type="hidden" name="Orientacion_comercial" id="hf-com">
   <input type="hidden" name="Tolerancia_frustracion" id="hf-frus">
   <input type="hidden" name="Comunicacion_empatia" id="hf-comu">
   <input type="hidden" name="Autonomia_organizacion" id="hf-aut">
   <input type="hidden" name="Relacion_comisiones" id="hf-din">
   <input type="hidden" name="Prospeccion_red" id="hf-pros">
-  <input type="hidden" name="ALERTAS" id="hf-alertas">
-  <input type="hidden" name="Motivacion_respuesta_abierta" id="hf-motiv">
-  <input type="hidden" name="Debilidad_respuesta_abierta" id="hf-debil">
+  <input type="hidden" name="Alertas" id="hf-alertas">
+  <input type="hidden" name="Motivacion" id="hf-motiv">
+  <input type="hidden" name="Debilidad_reconocida" id="hf-debil">
 </form>
 
 <script>
+// DISC — 12 bloques, palabras ambiguas y variadas
 const discItems=[
-  {w:['Enérgico','Entusiasta','Leal','Preciso']},
-  {w:['Audaz','Sociable','Paciente','Metódico']},
-  {w:['Decidido','Inspirador','Estable','Cuidadoso']},
-  {w:['Competitivo','Optimista','Comprensivo','Analítico']},
-  {w:['Directo','Persuasivo','Confiable','Perfeccionista']},
-  {w:['Dominante','Expresivo','Calmado','Sistemático']},
-  {w:['Iniciador','Comunicativo','Servicial','Organizado']},
-  {w:['Resuelto','Influyente','Consistente','Exacto']},
-  {w:['Independiente','Animado','Tranquilo','Diplomático']},
-  {w:['Determinado','Colaborativo','Gentil','Riguroso']},
-  {w:['Fuerte','Amigable','Tolerante','Prudente']},
-  {w:['Emprendedor','Sociable','Pacificador','Detallista']},
-  {w:['Rápido','Espontáneo','Moderado','Reflexivo']},
-  {w:['Exigente','Contagioso','Apacible','Objetivo']},
-  {w:['Pionero','Divertido','Firme','Cauteloso']},
-  {w:['Controlador','Carismático','Seguro','Lógico']},
-  {w:['Activo','Popular','Sincero','Precavido']},
-  {w:['Atrevido','Abierto','Constante','Concienzudo']},
-  {w:['Orientado a resultados','Orientado a personas','Orientado al equipo','Orientado a calidad']},
-  {w:['Líder','Motivador','Colaborador','Evaluador']},
-  {w:['Visionario','Entusiasta','Armonioso','Ordenado']},
-  {w:['Persistente','Dinámico','Amable','Cuidadoso']},
-  {w:['Desafiante','Alegre','Conciliador','Estratégico']},
-  {w:['Seguro de sí','Convincente','Paciente','Analítico']},
+  {w:['Resuelto','Entusiasta','Paciente','Meticuloso']},
+  {w:['Audaz','Expresivo','Constante','Preciso']},
+  {w:['Exigente','Optimista','Leal','Ordenado']},
+  {w:['Competitivo','Persuasivo','Comprensivo','Cauteloso']},
+  {w:['Independiente','Animado','Tranquilo','Analítico']},
+  {w:['Pionero','Sociable','Moderado','Riguroso']},
+  {w:['Dominante','Carismático','Confiable','Sistemático']},
+  {w:['Determinado','Colaborativo','Amable','Estratégico']},
+  {w:['Directo','Motivador','Gentil','Reflexivo']},
+  {w:['Activo','Convincente','Estable','Detallista']},
+  {w:['Desafiante','Espontáneo','Pacificador','Objetivo']},
+  {w:['Orientado a metas','Orientado a personas','Orientado al equipo','Orientado a calidad']},
 ];
 
+// PREGUNTAS COMERCIALES — situacionales, con opciones capciosas
 const pqs=[
-  {dim:'comercial',t:'Estás trabajando en una venta importante y el cliente dice "lo voy a pensar". ¿Qué hacés?',opts:[{t:'Le digo que me avise cuando esté listo',v:1},{t:'Le pregunto qué dudas tiene e intento resolverlas',v:3},{t:'Acuerdo un seguimiento concreto: día, hora y canal',v:4},{t:'Identifico la objeción de fondo, la trabajo y defino el próximo paso',v:5},{t:'Le digo que hay pocas unidades para generar urgencia',v:2}]},
-  {dim:'comercial',t:'¿Cuál creés que es el factor más importante para cerrar una venta?',opts:[{t:'El precio: si está barato, se vende solo',v:1},{t:'Que la propiedad sea buena y esté bien ubicada',v:2},{t:'La confianza que genera el asesor',v:3},{t:'Entender la necesidad del comprador antes de mostrar',v:4},{t:'Necesidad detectada + propuesta ajustada + seguimiento constante',v:5}]},
-  {dim:'frustracion',t:'Llevás 3 semanas sin cerrar ninguna operación. ¿Cuál es tu reacción más honesta?',opts:[{t:'Pienso que este trabajo no es para mí',v:1},{t:'Me desmotivo bastante, aunque sigo',v:2},{t:'Lo tomo como parte del proceso, aunque me genera presión',v:3},{t:'Analizo qué estoy haciendo diferente y ajusto',v:4},{t:'Lo uso como combustible: intensifico el contacto y reviso mis procesos',v:5}]},
-  {dim:'frustracion',t:'Un cliente al que dedicaste mucho tiempo compró con otra inmobiliaria. ¿Cómo lo manejás?',opts:[{t:'Me enojo: siento que fue pérdida de tiempo',v:1},{t:'Me frustra mucho y me cuesta seguir el día',v:2},{t:'Lo acepto aunque me molesta, sigo adelante',v:3},{t:'Le deseo éxito y le pido que me refiera alguien',v:4},{t:'Pregunto qué valoró de la otra opción y lo uso para mejorar',v:5}]},
-  {dim:'comunicacion',t:'Una pareja viene a ver una propiedad. Uno quiere comprar, el otro tiene dudas. ¿Qué hacés?',opts:[{t:'Me enfoco en el que quiere comprar',v:2},{t:'Escucho a los dos pero apunto al más entusiasta',v:3},{t:'Dejo que hablen entre ellos',v:1},{t:'Identifico las dudas del que vacila y las trabajo',v:4},{t:'Genero espacio para el que duda y busco alinear a los dos',v:5}]},
-  {dim:'autonomia',t:'El trabajo tiene horarios flexibles y pocos controles. ¿Cómo te organizás?',opts:[{t:'Me cuesta la autogestión, necesito que me marquen el ritmo',v:1},{t:'Me organizo más o menos, aunque a veces me disperso',v:2},{t:'Tengo cierta rutina, aunque no es muy estructurada',v:3},{t:'Me fijo metas semanales y trato de cumplirlas',v:4},{t:'Gestiono con objetivos claros, prioridades y seguimiento diario',v:5}]},
-  {dim:'dinero',t:'Este trabajo implica ingresos variables por comisiones. ¿Cómo te sentís con eso?',opts:[{t:'Me genera mucha incertidumbre, prefiero sueldo fijo',v:1},{t:'Me adapto, aunque necesito un básico para sentirme seguro/a',v:2},{t:'Lo entiendo y lo acepto, aunque me toma tiempo',v:3},{t:'Me motiva ganar más según mi esfuerzo',v:4},{t:'Es exactamente lo que busco: sin techo de ingresos',v:5}]},
-  {dim:'dinero',t:'¿Cuánto tiempo podés sostener económicamente sin operaciones importantes?',opts:[{t:'Menos de un mes',v:1},{t:'Un mes aproximadamente',v:2},{t:'Dos a tres meses',v:3},{t:'Tres a seis meses',v:4},{t:'Más de seis meses',v:5}]},
-  {dim:'prospeccion',t:'¿Cómo te sentís contactando personas que no conocés para ofrecerles un servicio?',opts:[{t:'Me incomoda mucho, no lo haría',v:1},{t:'Me cuesta, pero puedo si es necesario',v:2},{t:'Lo hago sin problemas con un guión claro',v:3},{t:'Me sale natural, soy bueno/a iniciando conversaciones',v:4},{t:'Es una de mis fortalezas: construyo relaciones en cualquier contexto',v:5}]},
-  {dim:'prospeccion',t:'¿Tenés red de contactos que podrían derivarte clientes o propiedades?',opts:[{t:'No, tendría que armarla desde cero',v:1},{t:'Tengo algunos conocidos pero no los vería como clientes',v:2},{t:'Tengo red social activa aunque no en el rubro',v:3},{t:'Sí, contactos que podrían referirme clientes rápidamente',v:4},{t:'Sí, tengo red en el rubro y contactos activos',v:5}]},
-  {dim:'open',t:'¿Por qué querés trabajar en el sector inmobiliario?',open:true},
-  {dim:'open2',t:'¿Cuál considerás que es tu mayor debilidad para este rol? Sé honesto/a.',open:true},
+  {dim:'comercial',
+   t:'Un cliente ve una propiedad, le encanta, pero dice que el precio está un 15% arriba de su presupuesto. Insiste en que el dueño tiene que bajar. ¿Qué hacés?',
+   ctx:'El dueño ya rechazó dos ofertas anteriores por debajo del precio.',
+   opts:[
+     {t:'Le explico que el dueño no va a bajar y le muestro otras opciones dentro de su presupuesto.',v:3},
+     {t:'Le digo que puedo hablar con el dueño, aunque sé que las chances son bajas.',v:2},
+     {t:'Exploro si puede estirar el presupuesto — cuotas, crédito, aporte de terceros — antes de hablar con el dueño.',v:5},
+     {t:'Hablo con el dueño directamente sin avisarle al cliente para no generarle expectativas.',v:1},
+     {t:'Le digo que es una excelente oportunidad y que el mercado no espera, para generar urgencia.',v:2},
+   ]},
+  {dim:'comercial',
+   t:'Cerraste una operación importante. El comprador, muy contento, te dice "si conocés a alguien que quiera vender, avisame". ¿Qué hacés con eso?',
+   opts:[
+     {t:'Le agradezco y sigo con mis tareas del día.',v:1},
+     {t:'Le pregunto si él mismo tiene algún conocido que esté pensando en vender.',v:4},
+     {t:'Le pido que me presente a tres personas de su círculo que podrían estar interesadas en el mercado.',v:5},
+     {t:'Le digo que voy a tener en cuenta el comentario.',v:1},
+     {t:'Le mando mi tarjeta para que la comparta.',v:2},
+   ]},
+  {dim:'frustracion',
+   t:'Trabajaste 6 semanas con una familia para encontrarles el departamento ideal. El día antes de firmar, te llaman para decirte que compraron con otro asesor que conocían. ¿Qué hacés?',
+   ctx:'No hubo señal de esto durante el proceso.',
+   opts:[
+     {t:'Los llamo para entender qué pasó y les deseo suerte.',v:3},
+     {t:'Me enojo internamente pero no digo nada. Lo dejo pasar.',v:2},
+     {t:'Los llamo, les expreso mi sorpresa con respeto, les pido feedback y les dejo la puerta abierta para el futuro.',v:5},
+     {t:'Les mando un mensaje preguntando si el otro asesor les cobró menos comisión.',v:1},
+     {t:'Lo tomo como aprendizaje: evalúo qué señales no vi y cómo voy a actuar diferente la próxima vez.',v:4},
+   ]},
+  {dim:'autonomia',
+   t:'Es miércoles a las 11am. No tenés reuniones agendadas, ningún cliente urgente y tu cartera está tranquila. ¿Qué hacés?',
+   opts:[
+     {t:'Aprovecho para ponerme al día con tareas administrativas.',v:2},
+     {t:'Salgo a recorrer la zona, entro a negocios y genero conversaciones que pueden derivar en contactos.',v:5},
+     {t:'Llamo a clientes anteriores para ver cómo están y si conocen a alguien que quiera comprar o vender.',v:4},
+     {t:'Reviso portales y redes para ver qué está publicando la competencia.',v:3},
+     {t:'Espero que lleguen consultas — si el mercado está tranquilo, es normal.',v:1},
+   ]},
+  {dim:'dinero',
+   t:'Llevas dos meses sin cerrar ninguna operación. Tu cuenta bancaria empieza a resentirse. Un conocido te ofrece un trabajo en relación de dependencia con sueldo fijo. ¿Qué hacés?',
+   opts:[
+     {t:'Acepto el trabajo — la estabilidad es prioritaria.',v:1},
+     {t:'Pido tiempo para pensarlo y mientras intensifico mi actividad comercial.',v:4},
+     {t:'Lo rechazo. Esto es lo que elegí y voy a salir adelante.',v:3},
+     {t:'Acepto el trabajo pero sigo con algunas operaciones inmobiliarias en paralelo.',v:2},
+     {t:'Analizo si puedo sostener 30 días más con lo que tengo. Si sí, sigo. Si no, evalúo el trabajo.',v:5},
+   ]},
+  {dim:'prospeccion',
+   t:'Estás en una reunión social — cumpleaños de un amigo. Un desconocido menciona que está pensando en mudarse. ¿Qué hacés?',
+   opts:[
+     {t:'Me acerco, me presento como asesor de Amaya y le pregunto qué está buscando.',v:5},
+     {t:'Escucho pero no me meto — no me gusta mezclar lo laboral con lo social.',v:1},
+     {t:'Le comento que trabajo en el rubro por si le puede servir.',v:3},
+     {t:'Le pido el contacto al amigo en común para llamarlo después.',v:4},
+     {t:'Espero que el amigo me presente si le parece oportuno.',v:2},
+   ]},
+  {dim:'comunicacion',
+   t:'Estás mostrando una propiedad a una pareja. Él quiere comprar, ella tiene dudas serias sobre la ubicación. Él te mira con cara de "ayudame". ¿Qué hacés?',
+   opts:[
+     {t:'Me enfoco en él — es quien quiere comprar.',v:1},
+     {t:'Le pregunto a ella directamente qué es lo que más le preocupa de la ubicación.',v:5},
+     {t:'Enumero las ventajas de la zona para contrarrestar las dudas.',v:2},
+     {t:'Propongo visitar la zona juntos para que ella la conozca mejor antes de decidir.',v:4},
+     {t:'Les doy espacio para que hablen entre ellos y vuelvo en unos minutos.',v:3},
+   ]},
+  {dim:'open',t:'¿Qué es lo que más te atrae del modelo de Amaya específicamente? (No del rubro en general)',open:true},
+  {dim:'open2',t:'Describí una situación en la que no lograste algo que querías. ¿Qué hiciste con eso?',open:true},
 ];
 
 const discMas={},discMen={};
@@ -255,45 +297,36 @@ const pqAnswers={};
 const openAnswers={};
 
 const dimDefs={
-  comercial:{label:'Orientación comercial',desc:{high:'Sabe vender. Entiende el proceso comercial, no se achica frente a una objeción y tiene claro cómo llevar una negociación hasta el cierre.',mid:'Tiene base comercial trabajable. Entiende el proceso pero le falta profundidad en el manejo de objeciones y seguimiento.',low:'Necesita formación comercial básica. Por ahora no tiene herramientas sólidas para gestionar una venta compleja.'},color:'#5bc8f5',bg:'#0a1e2e',border:'#1a4a6b'},
-  frustracion:{label:'Tolerancia a la frustración',desc:{high:'Muy resiliente. Las rachas sin operaciones no lo/la derrumban — las usa para ajustar y seguir. Eso es clave en este rubro.',mid:'Tolera la frustración de forma aceptable, aunque le afecta más de lo ideal. Con acompañamiento puede desarrollar más resistencia.',low:'Le cuesta sostenerse emocionalmente cuando los resultados no llegan. Este rubro tiene períodos difíciles que requieren mucha fortaleza interna.'},color:'#5bc8f5',bg:'#0a1e2e',border:'#1a4a6b'},
-  comunicacion:{label:'Comunicación y empatía',desc:{high:'Excelente comunicador/a. Escucha, adapta su tono y construye confianza con naturalidad. Muy difícil de enseñar, y él/ella ya lo tiene.',mid:'Se comunica bien en la mayoría de las situaciones. Puede mejorar en la escucha activa y en adaptar el mensaje según el interlocutor.',low:'Necesita trabajar la comunicación empática. En ventas inmobiliarias, conectar con el cliente es tan importante como conocer la propiedad.'},color:'#5bc8f5',bg:'#0a1e2e',border:'#1a4a6b'},
-  autonomia:{label:'Autonomía y organización',desc:{high:'Se autogestiona muy bien. Trabaja con metas claras sin necesitar supervisión constante. Ideal para el modelo de Amaya.',mid:'Tiene cierta estructura pero puede dispersarse. Va a necesitar un sistema de seguimiento y metas semanales claras al inicio.',low:'Requiere estructura externa para funcionar. En un modelo sin horario fijo y sin jefe directo, esto puede ser un problema serio. Es el área más crítica a evaluar.'},color:'#f0a500',bg:'#1a1000',border:'#6b4a00'},
-  dinero:{label:'Relación con comisiones',desc:{high:'Entiende y abraza el modelo de ingresos variables. Tiene respaldo económico para los primeros meses. Sin presión financiera inmediata, puede construir bien.',mid:'Acepta el modelo aunque le genera algo de incertidumbre. Importante validar su situación económica actual para los primeros 2-3 meses.',low:'La variabilidad de ingresos le genera mucha ansiedad o no tiene espalda financiera para el arranque. Riesgo alto de abandono temprano.'},color:'#f0a500',bg:'#1a1000',border:'#6b4a00'},
-  prospeccion:{label:'Prospección y red',desc:{high:'Tiene red activa y le sale natural el contacto en frío. Puede generar su propia cartera desde el día uno.',mid:'Tiene algo de red pero necesita desarrollar el músculo de la prospección activa. Con guía puede arrancar bien.',low:'Arranca de cero en términos de red y le cuesta el contacto con desconocidos. Va a tardar más en generar sus primeras operaciones.'},color:'#5bc8f5',bg:'#0a1e2e',border:'#1a4a6b'}
+  comercial:{label:'Orientación comercial',desc:{high:'Sabe vender. Maneja objeciones, detecta necesidades y conduce el proceso hasta el cierre sin perder al cliente.',mid:'Tiene base comercial. Le falta profundidad en el manejo de situaciones complejas pero tiene potencial.',low:'Necesita formación comercial básica antes de salir al campo.'}},
+  frustracion:{label:'Tolerancia a la frustración',desc:{high:'Muy resiliente. Usa los golpes como combustible para mejorar. Fundamental en este rubro.',mid:'Tolera la frustración aunque le afecta. Con acompañamiento puede desarrollar más resistencia.',low:'Le cuesta sostenerse en rachas difíciles. Este rubro requiere mucha fortaleza interna.'}},
+  comunicacion:{label:'Comunicación y empatía',desc:{high:'Escucha activamente, lee al cliente y adapta su comunicación. Genera confianza con naturalidad.',mid:'Se comunica bien. Puede mejorar en la escucha y en leer señales no verbales.',low:'Necesita trabajar la comunicación empática. Conectar con el cliente es tan importante como conocer la propiedad.'}},
+  autonomia:{label:'Autonomía y organización',desc:{high:'Se autogestiona muy bien. Trabaja con metas claras sin supervisión. Ideal para el modelo de Amaya.',mid:'Tiene estructura pero puede dispersarse. Necesita metas semanales claras al inicio.',low:'Requiere estructura externa. En un modelo sin horario fijo esto puede ser un problema serio.'}},
+  dinero:{label:'Relación con comisiones',desc:{high:'Entiende y abraza el modelo variable. Tiene espalda financiera para los primeros meses.',mid:'Acepta el modelo pero con incertidumbre. Validar situación económica actual.',low:'La variabilidad le genera mucha ansiedad. Riesgo alto de abandono temprano.'}},
+  prospeccion:{label:'Prospección y red',desc:{high:'Tiene red activa y le sale natural el contacto. Puede generar cartera desde el día uno.',mid:'Tiene algo de red pero necesita desarrollar el músculo de la prospección activa.',low:'Arranca de cero. Va a tardar más en generar sus primeras operaciones.'}}
 };
 
 const discColors={
-  D:{bg:'#1a0e0e',border:'#6b1f1f',text:'#f09595',label:'Dominancia',fullDesc:'Orientado a resultados, directo y competitivo. Le gustan los desafíos y toma la iniciativa con facilidad.'},
-  I:{bg:'#1a1400',border:'#6b4a00',text:'#f0a500',label:'Influencia',fullDesc:'Comunicativo, entusiasta y sociable. Genera vínculos con facilidad y es muy persuasivo en situaciones de venta.'},
-  S:{bg:'#0a1e2e',border:'#1a4a6b',text:'#5bc8f5',label:'Estabilidad',fullDesc:'Paciente, confiable y metódico. Excelente en el seguimiento y en construir relaciones de largo plazo.'},
-  C:{bg:'#130e28',border:'#3d2a7a',text:'#a78bfa',label:'Conciencia',fullDesc:'Analítico, preciso y detallista. Evalúa bien antes de actuar y se preocupa por la calidad del proceso.'}
+  D:{bg:'#1a0e0e',border:'#6b1f1f',text:'#f09595',label:'Dominancia',desc:'Directo, decidido y orientado a resultados. Empuja cierres con naturalidad y no teme el conflicto en una negociación.'},
+  I:{bg:'#1a1400',border:'#6b4a00',text:'#f0a500',label:'Influencia',desc:'Carismático/a, comunicativo/a y entusiasta. Genera vínculos con facilidad y es muy persuasivo/a.'},
+  S:{bg:'#0a1e2e',border:'#1a4a6b',text:'#5bc8f5',label:'Estabilidad',desc:'Paciente, confiable y metódico/a. Excelente en el seguimiento y en construir relaciones de largo plazo.'},
+  C:{bg:'#130e28',border:'#3d2a7a',text:'#a78bfa',label:'Conciencia',desc:'Analítico/a, preciso/a y detallista. Evalúa bien antes de actuar y se preocupa por la calidad del proceso.'}
 };
 
 function getProfile(p,s,nombre){
   const profiles={
-    DI:{name:'Impulsor social',aptitud:'Muy apto/a',ac:'#0a1e2e',at:'#5bc8f5',ab:'#1a4a6b',
-      desc:`${nombre} tiene el perfil más buscado para este rol. Combina la orientación a resultados del factor D con la capacidad de influencia del factor I. Es directo/a cuando hay que cerrar, pero también sabe generar confianza y calentar la relación antes. No teme el rechazo, mantiene la iniciativa en rachas difíciles y conecta con distintos tipos de clientes. En inmobiliaria de alto valor, este perfil es el que más opera.`},
-    ID:{name:'Promotor activo',aptitud:'Muy apto/a',ac:'#0a1e2e',at:'#5bc8f5',ab:'#1a4a6b',
-      desc:`${nombre} comunica muy bien y tiene el empuje para cerrar. Su factor I dominante le da carisma natural con los clientes, mientras que el D le aporta la determinación para no soltar una operación hasta el final. Perfil muy alineado con el rol — va a generar vínculos rápido y convertirlos en operaciones.`},
-    IS:{name:'Consejero de confianza',aptitud:'Apto/a con potencial',ac:'#1a1000',at:'#f0a500',ab:'#6b4a00',
-      desc:`${nombre} genera confianza genuina y construye relaciones sólidas. Los clientes se sienten escuchados y acompañados. Su desafío es la proactividad en el cierre — tiende a esperar que el cliente decida solo en vez de conducir el proceso. Con formación en técnicas de cierre y seguimiento, puede ser muy efectivo/a.`},
-    SI:{name:'Relacionador empático',aptitud:'Apto/a con potencial',ac:'#1a1000',at:'#f0a500',ab:'#6b4a00',
-      desc:`${nombre} conecta fácilmente con las personas y genera vínculos duraderos. Es muy bueno/a en la postventa y en fidelizar clientes. Necesita trabajar el músculo de la iniciativa comercial — buscar activamente oportunidades en lugar de esperar que lleguen. Con estructura y acompañamiento puede desarrollarse bien.`},
-    DC:{name:'Ejecutor analítico',aptitud:'Apto/a con potencial',ac:'#1a1000',at:'#f0a500',ab:'#6b4a00',
-      desc:`${nombre} decide rápido y lo sustenta bien. Muy efectivo/a en negociaciones complejas y en propiedades de alto valor donde el cliente es también analítico. Su desafío es la calidez en el trato — puede percibirse como frío/a o impaciente. Trabajar la empatía y el ritmo del cliente le va a potenciar mucho.`},
-    CD:{name:'Estratega decidido',aptitud:'A evaluar',ac:'#1a0e0e',at:'#f09595',ab:'#6b1f1f',
-      desc:`${nombre} analiza muy bien antes de actuar y cuando decide lo hace con firmeza. Puede ser muy bueno/a en productos complejos o de alta inversión. Sin embargo, su baja espontaneidad puede frenarlo/a en la prospección activa. Evaluar en entrevista si tiene la energía comercial que el día a día del rubro requiere.`},
-    SC:{name:'Especialista metódico',aptitud:'A evaluar',ac:'#1a0e0e',at:'#f09595',ab:'#6b1f1f',
-      desc:`${nombre} es ordenado/a, confiable y muy detallista. Excelente para el seguimiento de operaciones y para el trabajo administrativo. El desafío es que el rol de asesor activo requiere generar oportunidades de forma proactiva, algo que no es natural para este perfil. Evaluar bien en entrevista si tiene la disposición para salir a buscar clientes.`},
-    CS:{name:'Analista reflexivo',aptitud:'No recomendado para ventas activas',ac:'#1a0e0e',at:'#f09595',ab:'#6b1f1f',
-      desc:`${nombre} tiene un perfil técnico y analítico muy marcado. Va a brillar en análisis de mercado, valuaciones o gestión de documentación, pero el rol de asesor comercial activo le va a resultar muy demandante. No se recomienda para el puesto de ventas — sí podría ser muy valioso en otro rol dentro de la organización.`},
+    DI:{name:'Impulsor social',aptitud:'Muy apto/a',ac:'#0a1e2e',at:'#5bc8f5',ab:'#1a4a6b',desc:`${nombre} tiene el perfil más buscado para este rol. Combina la orientación a resultados con la capacidad de influencia. Directo/a cuando hay que cerrar, pero también sabe generar confianza antes. No teme el rechazo y mantiene la iniciativa en rachas difíciles.`},
+    ID:{name:'Promotor activo',aptitud:'Muy apto/a',ac:'#0a1e2e',at:'#5bc8f5',ab:'#1a4a6b',desc:`${nombre} comunica muy bien y tiene el empuje para cerrar. Su carisma natural con los clientes, combinado con la determinación para no soltar una operación, lo/la hace muy alineado/a con el rol.`},
+    IS:{name:'Consejero de confianza',aptitud:'Apto/a con potencial',ac:'#1a1000',at:'#f0a500',ab:'#6b4a00',desc:`${nombre} genera confianza genuina y construye relaciones sólidas. Los clientes se sienten escuchados. Su desafío es la proactividad en el cierre — tiende a esperar que el cliente decida solo. Con formación en técnicas de cierre puede ser muy efectivo/a.`},
+    SI:{name:'Relacionador empático',aptitud:'Apto/a con potencial',ac:'#1a1000',at:'#f0a500',ab:'#6b4a00',desc:`${nombre} conecta fácilmente y genera vínculos duraderos. Excelente en fidelización. Necesita trabajar la iniciativa comercial activa — buscar oportunidades en lugar de esperar que lleguen.`},
+    DC:{name:'Ejecutor analítico',aptitud:'Apto/a con potencial',ac:'#1a1000',at:'#f0a500',ab:'#6b4a00',desc:`${nombre} decide rápido y lo sustenta bien. Muy efectivo/a en negociaciones complejas. Su desafío es la calidez en el trato — puede percibirse como frío/a. Trabajar la empatía le va a potenciar mucho.`},
+    CD:{name:'Estratega decidido',aptitud:'A evaluar',ac:'#1a0e0e',at:'#f09595',ab:'#6b1f1f',desc:`${nombre} analiza bien antes de actuar. Puede ser muy bueno/a en propiedades complejas. Su baja espontaneidad puede frenarlo/a en la prospección activa. Evaluar en entrevista si tiene la energía comercial que el día a día requiere.`},
+    SC:{name:'Especialista metódico',aptitud:'A evaluar',ac:'#1a0e0e',at:'#f09595',ab:'#6b1f1f',desc:`${nombre} es ordenado/a y confiable. El desafío es que el rol requiere generar oportunidades de forma proactiva, algo que no es natural para este perfil. Evaluar bien en entrevista.`},
+    CS:{name:'Analista reflexivo',aptitud:'No recomendado para ventas activas',ac:'#1a0e0e',at:'#f09595',ab:'#6b1f1f',desc:`${nombre} tiene un perfil técnico muy marcado. Brillará en análisis de mercado o valuaciones, pero el rol de asesor comercial activo le va a resultar muy demandante.`},
   };
-  return profiles[p+s]||{name:'Perfil mixto',aptitud:'A evaluar en entrevista',ac:'#1a1000',at:'#f0a500',ab:'#6b4a00',
-    desc:`${nombre} muestra un perfil equilibrado entre ${discColors[p].label} y ${discColors[s].label}. Se recomienda una entrevista en profundidad para evaluar motivación real y capacidad de autogestión.`};
+  return profiles[p+s]||{name:'Perfil mixto',aptitud:'A evaluar en entrevista',ac:'#1a1000',at:'#f0a500',ab:'#6b4a00',desc:`${nombre} muestra un perfil equilibrado. Se recomienda entrevista en profundidad para evaluar motivación y autogestión.`};
 }
 
-function getDimLevel(pct){return pct>=70?'high':pct>=45?'mid':'low';}
+function getDimLevel(v){return v>=70?'high':v>=45?'mid':'low';}
 
 function buildDisc(){
   const c=document.getElementById('disc-container');c.innerHTML='';
@@ -337,10 +370,11 @@ function buildPQ(){
       d.innerHTML=`<div class="pq-num">Pregunta ${idx+1}</div><div class="pq-text">${q.t}</div>
       <textarea class="open-field" id="open_${idx}" placeholder="Escribí tu respuesta..." oninput="openAnswers['${q.dim}']=this.value;updatePQProg()"></textarea>`;
     }else{
+      const ctxH=q.ctx?`<div class="pq-context">${q.ctx}</div>`:'';
       let optsH=`<div class="pq-opts">`;
       q.opts.forEach((o,oi)=>{optsH+=`<div class="pq-opt" id="popt_${idx}_${oi}" onclick="selPQ(${idx},${oi},${o.v},'${q.dim}')"><div class="opt-radio"></div><div class="opt-label">${o.t}</div></div>`;});
       optsH+='</div>';
-      d.innerHTML=`<div class="pq-num">Pregunta ${idx+1}</div><div class="pq-text">${q.t}</div>${optsH}`;
+      d.innerHTML=`<div class="pq-num">Pregunta ${idx+1}</div><div class="pq-text">${q.t}</div>${ctxH}${optsH}`;
     }
     c.appendChild(d);
   });
@@ -372,14 +406,14 @@ function goScreen(id){
 function startDisc(){
   const n=document.getElementById('f-nombre').value.trim();
   const e=document.getElementById('f-email').value.trim();
-  if(!n||!e){alert('Por favor completá al menos nombre y email para continuar.');return;}
+  if(!n||!e){alert('Por favor completá nombre y email para continuar.');return;}
   buildDisc();buildPQ();goScreen('s1');
 }
 
 function goToPQ(){
   let missing=0;
   discItems.forEach((_,i)=>{if(discMas[i]===undefined||discMen[i]===undefined)missing++;});
-  if(missing>0){alert(`Faltán completar ${missing} bloque(s) del test DISC.`);return;}
+  if(missing>0){alert(`Faltán completar ${missing} bloque(s) — elegí MÁS y MENOS en cada uno.`);return;}
   goScreen('s2');
 }
 
@@ -395,28 +429,22 @@ function calcScores(){
   const total=raw.D+raw.I+raw.S+raw.C||1;
   const pct={D:Math.round((raw.D/total)*100),I:Math.round((raw.I/total)*100),S:Math.round((raw.S/total)*100),C:Math.round((raw.C/total)*100)};
   const dimScores={};
-  const dimKeys=['comercial','frustracion','comunicacion','autonomia','dinero','prospeccion'];
-  dimKeys.forEach(k=>{
+  ['comercial','frustracion','comunicacion','autonomia','dinero','prospeccion'].forEach(k=>{
     const arr=pqAnswers[k]||[];
-    if(!arr.length){dimScores[k]=50;return;}
-    dimScores[k]=Math.round((arr.reduce((a,b)=>a+b,0)/(arr.length*5))*100);
+    dimScores[k]=arr.length?Math.round((arr.reduce((a,b)=>a+b,0)/(arr.length*5))*100):50;
   });
   return{pct,dimScores};
 }
 
-function detectAlertas(pct,dimScores,nombre){
-  const alerts=[];
-  if(dimScores.autonomia<40&&dimScores.dinero<50)
-    alerts.push(`Combinación de riesgo: baja autonomía (${dimScores.autonomia}%) + relación débil con comisiones (${dimScores.dinero}%). Puede abandonar en los primeros meses si no ve resultados rápido.`);
-  if(dimScores.dinero<40)
-    alerts.push(`Frágil financieramente o muy dependiente de ingresos fijos. Validar en entrevista cuánto tiempo puede sostener sin operaciones.`);
-  if(pct.S>50&&dimScores.prospeccion<50)
-    alerts.push(`Perfil muy estable pero baja prospección. Puede esperar que los clientes lleguen solos en vez de salir a buscarlos.`);
-  if(dimScores.comercial<40)
-    alerts.push(`Orientación comercial débil. Necesitará formación intensiva en técnicas de venta antes de salir al campo.`);
-  if(pct.C>40&&pct.D<20)
-    alerts.push(`Alta conciencia con baja dominancia: puede ser muy lento/a para tomar decisiones y para empujar cierres.`);
-  return alerts;
+function detectAlertas(pct,dimScores){
+  const a=[];
+  if(dimScores.autonomia<40&&dimScores.dinero<50)a.push('Riesgo de abandono temprano: baja autonomía combinada con relación frágil con los ingresos variables. Validar espalda financiera en entrevista.');
+  if(dimScores.dinero<40)a.push('Muy dependiente de ingresos fijos. Verificar cuánto tiempo puede sostener sin operaciones.');
+  if(pct.S>45&&dimScores.prospeccion<50)a.push('Perfil estable con baja prospección: puede esperar que los clientes lleguen solos en vez de salir a buscarlos.');
+  if(dimScores.comercial<40)a.push('Orientación comercial débil. Necesitará formación intensiva antes de salir al campo.');
+  if(pct.C>35&&pct.D<15)a.push('Alta conciencia con baja dominancia: puede ser muy lento/a para tomar decisiones y empujar cierres.');
+  if(dimScores.autonomia<35)a.push('Autogestión muy baja. El modelo de trabajo de Amaya requiere alto nivel de independencia desde el día uno.');
+  return a;
 }
 
 function submitForm(){
@@ -428,7 +456,15 @@ function submitForm(){
   const primary=sorted[0][0],secondary=sorted[1][0];
   const nombre=document.getElementById('f-nombre').value||'Candidato/a';
   const prof=getProfile(primary,secondary,nombre);
-  const alertas=detectAlertas(pct,dimScores,nombre);
+  const alertas=detectAlertas(pct,dimScores);
+
+  const discDesc={
+    D:{high:'Muy dominante. Directo/a, decidido/a, empuja cierres con naturalidad.',mid:'Cierta orientación a resultados. Puede cerrar bien con formación.',low:'Baja dominancia. Puede costarle conducir negociaciones o empujar cierres.'},
+    I:{high:'Muy influyente. Carismático/a, genera confianza rápido con cualquier tipo de cliente.',mid:'Buena comunicación e influencia. Se relaciona bien.',low:'Baja influencia. Puede costarle generar rapport con clientes nuevos.'},
+    S:{high:'Muy estable. Paciente, confiable, excelente en seguimiento y relaciones de largo plazo.',mid:'Estabilidad media. Tiene paciencia aunque puede perder el hilo en procesos largos.',low:'Baja estabilidad. Puede ser impulsivo/a. Le cuestan los procesos largos.'},
+    C:{high:'Muy analítico/a y detallista. Ideal para operaciones complejas, aunque puede ser lento/a para decidir.',mid:'Equilibrio entre acción y reflexión.',low:'Baja conciencia. Puede cometer errores en documentación. Necesita revisión externa.'}
+  };
+  const getDiscLevel=(v)=>v>=40?'high':v>=20?'mid':'low';
 
   document.getElementById('hf-subject').value=`Nueva evaluación Amaya — ${nombre} — ${prof.aptitud}`;
   document.getElementById('hf-nombre').value=nombre;
@@ -439,13 +475,6 @@ function submitForm(){
   document.getElementById('hf-exp').value=document.getElementById('f-exp').value;
   document.getElementById('hf-disp').value=document.getElementById('f-disp').value;
   document.getElementById('hf-vehiculo').value=document.getElementById('f-vehiculo').value;
-  const discDesc={
-    D:{high:'Perfil muy dominante. Directo, decidido y orientado a resultados. Empuja cierres con naturalidad y no teme el conflicto en una negociación.',mid:'Tiene iniciativa y cierta orientación a resultados, aunque no es su rasgo principal. Puede cerrar bien con formación.',low:'Baja dominancia. Le puede costar conducir negociaciones duras o empujar un cierre cuando el cliente demora.'},
-    I:{high:'Perfil muy influyente. Carismático/a, comunicativo/a y entusiasta. Genera confianza rápido y conecta fácilmente con distintos tipos de clientes.',mid:'Buena capacidad de comunicación e influencia. Se relaciona bien aunque no siempre toma la iniciativa social.',low:'Baja influencia. Puede costarle generar rapport con clientes nuevos o sostener conversaciones comerciales fluidas.'},
-    S:{high:'Muy estable y confiable. Paciente, metódico/a y excelente en el seguimiento. Construye relaciones duraderas con los clientes.',mid:'Estabilidad media. Tiene paciencia aunque puede perder el hilo en procesos largos o con muchos clientes a la vez.',low:'Baja estabilidad. Puede ser impulsivo/a o impaciente. Le cuestan los procesos largos y el seguimiento sostenido.'},
-    C:{high:'Muy analítico/a y detallista. Revisa bien la documentación y los números. Ideal para operaciones complejas aunque puede ser lento/a para decidir.',mid:'Cierto nivel de análisis y cuidado en los detalles. Equilibrio entre acción y reflexión.',low:'Baja conciencia. Puede cometer errores en documentación o en los detalles de una operación. Necesita revisión externa.'}
-  };
-  const getDiscLevel=(v)=>v>=40?'high':v>=20?'mid':'low';
   document.getElementById('hf-d').value=pct.D+'% — '+discDesc.D[getDiscLevel(pct.D)];
   document.getElementById('hf-i').value=pct.I+'% — '+discDesc.I[getDiscLevel(pct.I)];
   document.getElementById('hf-s').value=pct.S+'% — '+discDesc.S[getDiscLevel(pct.S)];
@@ -463,13 +492,11 @@ function submitForm(){
   document.getElementById('hf-debil').value=openAnswers['open2']||'(sin respuesta)';
 
   const form=document.getElementById('hidden-form');
-  const fd=new FormData(form);
-  fetch(form.action,{method:'POST',body:fd,headers:{'Accept':'application/json'}})
-    .then(r=>console.log(r.ok?'OK':'Error')).catch(()=>console.log('fetch error'));
+  fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+    .then(r=>console.log(r.ok?'Enviado':'Error')).catch(()=>console.log('Error fetch'));
 
   renderResult(pct,dimScores,prof,alertas,nombre);
   goScreen('s4');
-  // Show thank you to candidate after 100ms if they're on same device
 }
 
 function renderResult(pct,dimScores,prof,alertas,nombre){
@@ -478,6 +505,7 @@ function renderResult(pct,dimScores,prof,alertas,nombre){
   const vehiculo=document.getElementById('f-vehiculo').value||'—';
   const motiv=openAnswers['open']||'(sin respuesta)';
   const debil=openAnswers['open2']||'(sin respuesta)';
+  const sorted=Object.entries(pct).sort((a,b)=>b[1]-a[1]);
 
   const discCardsH=Object.entries(discColors).map(([k,c])=>`
     <div class="disc-res-card" style="background:${c.bg};border-color:${c.border}">
@@ -486,54 +514,51 @@ function renderResult(pct,dimScores,prof,alertas,nombre){
       <div class="disc-res-lbl" style="color:${c.text}">${c.label}</div>
     </div>`).join('');
 
-  const sorted=Object.entries(pct).sort((a,b)=>b[1]-a[1]);
   const p=sorted[0][0],s=sorted[1][0];
-  const discDescH=`<div style="padding:.85rem 1rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;margin-bottom:1rem">
-    <div style="font-size:13px;color:var(--text2);line-height:1.65"><strong style="color:var(--text)">${discColors[p].label} (${pct[p]}%)</strong> — ${discColors[p].fullDesc}<br><br>
-    <strong style="color:var(--text)">${discColors[s].label} (${pct[s]}%)</strong> — ${discColors[s].fullDesc}</div></div>`;
+  const discDescH=`<div style="padding:.8rem 1rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;margin-bottom:.85rem;font-size:13px;color:var(--text2);line-height:1.65">
+    <strong style="color:${discColors[p].text}">${discColors[p].label} (${pct[p]}%)</strong> — ${discColors[p].desc}<br><br>
+    <strong style="color:${discColors[s].text}">${discColors[s].label} (${pct[s]}%)</strong> — ${discColors[s].desc}
+  </div>`;
 
   const dimsH=Object.entries(dimDefs).map(([k,dim])=>{
     const v=dimScores[k]??50;
-    const level=getDimLevel(v);
-    const col=level==='high'?'#5bc8f5':level==='mid'?'#f0a500':'#e24b4a';
+    const lv=getDimLevel(v);
+    const col=lv==='high'?'#5bc8f5':lv==='mid'?'#f0a500':'#e24b4a';
     return `<div class="dim-block">
-      <div class="dim-block-title" style="color:${col}">${dim.label} — ${v}%</div>
-      <div class="dim-block-bar-row"><div class="dim-block-bar-bg"><div class="dim-block-bar-fill" style="width:${v}%;background:${col}"></div></div><span class="dim-block-pct" style="color:${col}">${v}%</span></div>
-      <div class="dim-block-desc">${dim.desc[level]}</div>
+      <div class="dim-block-title" style="color:${col}">${dim.label}</div>
+      <div class="dim-bar-row"><div class="dim-bar-bg"><div class="dim-bar-fill" style="width:${v}%;background:${col}"></div></div><span class="dim-bar-pct" style="color:${col}">${v}%</span></div>
+      <div class="dim-desc">${dim.desc[lv]}</div>
     </div>`;
   }).join('');
 
-  const alertsH=alertas.length?`<div class="alert-block"><div class="alert-block-title">⚠ Alertas a considerar</div>${alertas.map(a=>`<div class="alert-block-item">${a}</div>`).join('')}</div>`:'<div style="padding:.75rem 1rem;background:#0a1a0e;border:1px solid #1a4a2a;border-radius:10px;font-size:13px;color:#5bc8f5;margin-bottom:.75rem">✓ Sin alertas detectadas en este perfil.</div>';
+  const alertsH=alertas.length
+    ?`<div class="alert-block"><div class="alert-title">⚠ Alertas a considerar</div>${alertas.map(a=>`<div class="alert-item">${a}</div>`).join('')}</div>`
+    :`<div style="padding:.7rem .9rem;background:#0a1a0e;border:1px solid #1a4a2a;border-radius:10px;font-size:13px;color:#5bc8f5;margin-bottom:.65rem">✓ Sin alertas detectadas.</div>`;
 
   document.getElementById('resultado-content').innerHTML=`
     <div class="screen-title">${nombre}</div>
     <div class="info-chips">
       <span class="chip">Exp: <strong>${exp}</strong></span>
-      <span class="chip">Disponibilidad: <strong>${disp}</strong></span>
+      <span class="chip"><strong>${disp}</strong></span>
       <span class="chip">Vehículo: <strong>${vehiculo}</strong></span>
     </div>
-
     <div class="res-section-title">Perfil DISC</div>
     <div class="disc-res-grid">${discCardsH}</div>
     ${discDescH}
-
-    <div class="res-section-title">Diagnóstico general</div>
+    <div class="res-section-title">Diagnóstico</div>
     <div class="res-hero" style="background:${prof.ac};border-color:${prof.ab}">
       <div class="res-aptitud-tag" style="background:${prof.ab};color:${prof.at}">${prof.aptitud}</div>
       <div class="res-profile-name" style="color:${prof.at}">${prof.name}</div>
       <div class="res-profile-desc" style="color:${prof.at}">${prof.desc}</div>
     </div>
-
-    <div class="res-section-title">Competencias detalladas</div>
+    <div class="res-section-title">Competencias</div>
     ${dimsH}
-
     <div class="res-section-title">Alertas</div>
     ${alertsH}
-
     <div class="res-section-title">Respuestas abiertas</div>
-    <div class="open-res-q">¿Por qué querés trabajar en el sector inmobiliario?</div>
+    <div class="open-res-q">¿Qué te atrae del modelo de Amaya?</div>
     <div class="open-res-a">${motiv}</div>
-    <div class="open-res-q">¿Cuál es tu mayor debilidad para este rol?</div>
+    <div class="open-res-q">Situación donde no lograste algo — ¿qué hiciste?</div>
     <div class="open-res-a">${debil}</div>
   `;
 }
